@@ -35,8 +35,8 @@ Widget appNavigationBar(String title) => AppBar(
 
 /* Header */
 
-Widget servicesCard(String tittle, String img)=> Center(
-  child: Card(
+Widget servicesCard(String tittle, String img)=> Card(
+  
     color: Colors.lightGreen,
     child: Stack(
       children: <Widget>[
@@ -50,10 +50,26 @@ Widget servicesCard(String tittle, String img)=> Center(
         )
       ],
     )
-    )
+   
+);
+
+
+// ROWS FOR CARDS 
+
+Widget GenerateCardList(int cardNumber, Card card) => GridView.count(
+  crossAxisCount:2, 
+  scrollDirection: Axis.vertical,
+  children: List.generate(cardNumber, (index) {
+         
+  }) 
+
 );
 
 /* */
+
+
+
+
 
 
 /* STYLES */
