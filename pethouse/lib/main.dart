@@ -15,20 +15,23 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: appNavigationBar('PetHouse'),
-        body: ListView(
+        body:  Column(
           children: <Widget>[
-             Column(
-               children: <Widget>[
-                 headerSlider,
-               ],
-             ),
-             Container(
+            Container(
+              child: headerSlider
+            ),
+            Container(
                padding: EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
                child: Text("Servicios"),
-             ), 
-             generateCardList(homePageCards.length),
+             ),
+          
+            Expanded(
+              child: generateCardLists(homePageCards.length)
+              )  
+           
           ],
         )
+       
       ),
     );
   }
@@ -70,10 +73,10 @@ Widget servicesCard(String tittle, String img, Color color)=> Card(
 
 // ROWS FOR CARDS 
 
-Widget generateCardList(int cardNumber) => GridView.count(
+Widget generateCardLists(int cardNumber) => GridView.count(
   crossAxisCount:2, 
-  physics: NeverScrollableScrollPhysics(),
-  shrinkWrap: true,
+  // // physics: NeverScrollableScrollPhysics(),
+  // shrinkWrap: false,
   scrollDirection: Axis.vertical,
   children: List.generate(cardNumber, (index) {
       return servicesCard(homePageCards[index].cardCategory(), homePageCards[index].cardImage(),homePageCards[index].cardColor()); 
@@ -84,25 +87,56 @@ Widget generateCardList(int cardNumber) => GridView.count(
 /* */
 
 /* slider */
-Widget headerSlider = CarouselSlider(
-  height: 200.0,
-  autoPlayInterval: Duration(seconds: 4),
-  autoPlay: true,
-  scrollDirection: Axis.horizontal,
-  items: const [1,2,3,4,5].map((i) {
-    return Builder(
-      builder: (BuildContext context) {
-        return Container(
-          width: MediaQuery.of(context).size.width,
-          margin: EdgeInsets.symmetric(horizontal: 5.0),
-          decoration: BoxDecoration(
-            color: Colors.amber
-          ),
-          child: Text('text $i', style: TextStyle(fontSize: 16.0),)
-        );
-      },
-    );
-  }).toList(),
+// Widget headerSlider = CarouselSlider(
+//   height: 200.0,
+//   autoPlayInterval: Duration(seconds: 4),
+//   autoPlay: true,
+//   scrollDirection: Axis.horizontal,
+//   items: detailsNewsCard.map((tag) {
+//     return Builder(
+//       builder: (BuildContext context) {
+//         return buildNewsCardHome(tag, tag, tag,tag,Icons.new_releases,Colors.grey[100]);  
+//       },
+//     );
+//   }).toList(),
+// );
+
+
+Widget headerSlider = CarouselSlider.builder(
+   autoPlay: true,
+   autoPlayInterval: Duration(seconds: 3),
+   itemCount: detailsNewsCard.length,
+   itemBuilder: (BuildContext context, int i) =>
+       
+      buildNewsCardHome(detailsNewsCard[i]['tag'], detailsNewsCard[i]['title'],  detailsNewsCard[i]['author'], 
+         detailsNewsCard[i]['more'],  detailsNewsCard[i]['icon'],  detailsNewsCard[i]['color']),
+      
+   );
+
+// NEWS CARD HEADER
+
+
+Widget buildNewsCardHome(String tag, String headline, String writtenby, String readMore, IconData icon, Color color) => Card(
+  color: color,
+  elevation: 1.0,
+  child: Column(
+    mainAxisAlignment: MainAxisAlignment.start,
+    textDirection: TextDirection.ltr,
+    children: <Widget>[
+      Container(
+        decoration: new BoxDecoration(
+          color: Colors.orange[300]
+        ),
+        child: Text(tag),
+      ),
+      Text(headline), 
+      Text(writtenby), 
+      Row(children: <Widget>[
+        Icon(Icons.more),
+        Text(readMore)
+      ],)  
+    ],
+  ),
 );
 
 
@@ -134,13 +168,22 @@ Widget headerSlider = CarouselSlider(
 }
 
 
+//lists
+
+List detailsNewsCard  = [
+   {'tag':"news", 'title':"Nueva Ley Contra el maltrato animal", 'author' : 'Lauren Wright', 'more' : 'read more', 'icon' :Icons.info_outline, 'color': Colors.grey[100]}, 
+   {'tag': 'fashion' ,'title':'Colección de verano para tu masctoa', 'author' : 'Camile Hamp','more' : 'read more', 'icon' :Icons.info_outline, 'color': Colors.grey[100]},
+   {'tag': 'evento' ,'title':'Nueva Jornada de Vacunación', 'author' : 'Ramón Rivers','more' : 'read more', 'icon' :Icons.info_outline, 'color': Colors.grey[100]},
+   {'tag': 'evento','title':'Petatlón, Camina con mascota', 'author' : 'Alex Rivera','more' : 'read more', 'icon' :Icons.info_outline, 'color': Colors.grey[100]},
+];
+
 List homePageCards = [
   new CardCreator('Guardería', 'assets/images/dogcard1.png', Colors.purple[300]),
-  new CardCreator('Paseador', 'assets/images/dogcard2.png', Colors.green[300]),
-  new CardCreator('Veterinaría', 'assets/images/dogwithleash.jpg', Colors.orange[300]),
-  new CardCreator('Salón de belleza', 'assets/images/dogwithleash.jpg', Colors.blue[300]),
-  new CardCreator('Salón de belleza', 'assets/images/dogwithleash.jpg', Colors.blue[300]),
-  new CardCreator('Salón de belleza', 'assets/images/dogwithleash.jpg', Colors.blue[300]),
+  new CardCreator('Paseador', 'assets/images/dogcard5.png', Colors.green[300]),
+  new CardCreator('Veterinaría', 'assets/images/dogcard4.png', Colors.orange[300]),
+  new CardCreator('Higiene', 'assets/images/dogcard1.png', Colors.yellow[300]),
+  new CardCreator('Eventos', 'assets/images/dogcard5.png', Colors.red[300]),
+  new CardCreator('Accesorios', 'assets/images/dogcard4.png', Colors.blue[300]),
   ]; 
 
 
