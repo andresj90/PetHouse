@@ -9,7 +9,7 @@ void main() =>  runApp(MaterialApp(
     initialRoute: '/',
     routes: {
       // When navigating to the "/" route, build the FirstScreen widget.
-      '/': (context) => SecondScreen(),
+      '/': (context) => HomeScreen(),
       '/news': (context) => HomeScreen(),
       // When navigating to the "/second" route, build the SecondScreen widget.
       
@@ -29,9 +29,10 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('PetHouse'),
+        title: Text('Cuidadores'),
       ),
-      body:  Column(
+      body:    
+       Column(
           children: <Widget>[
             Container(
               child: headerSlider
@@ -49,7 +50,8 @@ class HomeScreen extends StatelessWidget {
               )  
            
           ],
-        ));
+        )
+        );
    
   }
 }
@@ -90,6 +92,46 @@ class SecondScreen extends StatelessWidget {
     );
   }
 }
+
+
+class ThirdScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Cuidadores"),
+      ),
+      body: new ListView.builder
+              (
+                itemCount: 8,
+                itemBuilder: (BuildContext ctxt, int index) {
+                  return listCuidadores('cuidador ${index}', 'Ubicación ${index}');
+                }
+            )
+        
+    );
+  }
+}
+
+
+Widget listCuidadores (String name, String location, ) => Card(
+      child: ListTile(
+        leading: ClipOval(
+                    child:Image.asset(
+                      'assets/images/user1.jpg',
+                      width: 60,
+                      height: 100,
+                      fit: BoxFit.cover,
+                    ),
+        ),
+        title: Text(name),
+        subtitle: Text(location),
+        trailing: Icon(Icons.more_vert),
+      ),
+);
+
+
+
 
 
 /* Generic Components */
@@ -374,3 +416,55 @@ var cardText =  TextStyle(
 
 );
 
+
+
+
+
+Widget titleSection = Container(
+  padding: const EdgeInsets.all(32),
+  child: Row(
+    children: [
+      Expanded(
+        /*1*/
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            /*2*/
+            Container(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Text(
+                'Nueva Ley contra el maltrato Animal',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            Text(
+              'Laure Wright',
+              style: TextStyle(
+                color: Colors.grey[500],
+              ),
+            ),
+          ],
+        ),
+      ),
+      /*3*/
+      CircleAvatar(
+        radius: 18,
+        child: ClipOval(
+        child: Image.asset('assets/images/womananddog.jpg'),
+    ),
+),
+      
+    ],
+  ),
+);
+
+
+Widget textSection = Container(
+  padding: const EdgeInsets.all(32),
+  child: Text(
+    'La norma dice que los animales son seres sintientes no son cosas, recibirán especial protección contra el sufrimiento y el dolor, en especial, el causado directa o indirectamente por los humanos.',
+    softWrap: true,
+  ),
+);
