@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:path/path.dart' as Path;
 
 void main() =>  runApp(MaterialApp(
     title: 'Named Routes Demo',
@@ -8,9 +9,10 @@ void main() =>  runApp(MaterialApp(
     initialRoute: '/',
     routes: {
       // When navigating to the "/" route, build the FirstScreen widget.
-      '/': (context) => HomeScreen(),
+      '/': (context) => SecondScreen(),
+      '/news': (context) => HomeScreen(),
       // When navigating to the "/second" route, build the SecondScreen widget.
-      '/second': (context) => HomeScreen(),
+      
     },
   ));
 
@@ -27,14 +29,17 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('First Screen'),
+        title: Text('PetHouse'),
       ),
-      body: Column(
+      body:  Column(
           children: <Widget>[
             Container(
               child: headerSlider
             ),
             Container(
+              //  decoration: new BoxDecoration( 
+              //    color: Colors.amberAccent
+              //  ),
                padding: EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
                child: Text("Servicios"),
              ),
@@ -44,19 +49,47 @@ class HomeScreen extends StatelessWidget {
               )  
            
           ],
-        )
-    );
+        ));
+   
   }
 }
 
 
+// second view
+// class NewsScreen extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('PetHouse'),
+//       ),
+//       body: buildNewsPost('assets/images/womananddog.jpg', 'Nueva Ley Decretada por el gobierno', 'noticia importante', 'assets/images/womananddog.jpg', 'Lauren Wright', DateTime.now(), 
+//       Icons.share, Icons.headset, '128', Icons.comment, '250', 'Share', Icons.share),
+//     );
+//   }
+// }
 
 
-
-
-
-
-
+class SecondScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Second Screen"),
+      ),
+      body: Center(
+        child: RaisedButton(
+          onPressed: () {
+            // Navigate back to the first screen by popping the current route
+            // off the stack.
+            Navigator.pop(context);
+          },
+          child: Text('Go back!'),
+        ),
+      ),
+    );
+  }
+}
 
 
 /* Generic Components */
@@ -122,8 +155,11 @@ Widget headerSlider = CarouselSlider.builder(
 
 Widget buildNewsCardHome(String tag, String headline, String writtenby, String readMore, IconData icon, Color color) => Card(
   color: color,
+
   elevation: 1.0,
-  child: Column(
+  child: Container(
+    padding: EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
+    child: Column(
     mainAxisAlignment: MainAxisAlignment.start,
     textDirection: TextDirection.ltr,
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -158,18 +194,31 @@ Widget buildNewsCardHome(String tag, String headline, String writtenby, String r
            ),
          ),
       ),
-      Container(
+      Expanded(
+        child: Container(
         margin: EdgeInsets.only(top: 35.0),
-        child: Row(children: <Widget>[
-        IconButton(
+        child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+        
+         InkWell(
+           child: Text(readMore),
+           onTap: () {
+            print('hello');
+          },
+         ),
+         IconButton(
           icon: Icon(icon), 
-          onPressed: null) 
+          onPressed: () {
+            print('hello');
+          },
+          ) 
         ,
-        Text(readMore)
       ],)
-      )  
+      ))  
     ],
   ),
+  )
 );
 
 
@@ -201,6 +250,92 @@ Widget buildNewsCardHome(String tag, String headline, String writtenby, String r
 }
 
 
+// NEWS SCREEN 
+
+Widget postInfo(String img, String user, DateTime datePosted, IconData options) => ListTile(
+              leading: CircleAvatar(
+              child: Image.asset(img),
+              ),
+              title: Text(user),
+              subtitle: Text(datePosted.toString()),
+              trailing: Icon(options),  
+);
+ 
+
+Widget postDetails(IconData icon1, String info1, IconData icon2, String info2, String info3, IconData icon3) => Row(
+  children: <Widget>[
+    Expanded(
+      child: 
+       Row(
+         mainAxisAlignment: MainAxisAlignment.start,
+         children: <Widget>[
+         Icon(
+           icon1
+         ), 
+         Text(info1), 
+         Icon(
+           icon2
+         ), 
+         Text(info2), 
+       ],)
+      ), 
+    Expanded(
+      child: Row(
+         children: <Widget>[
+           Text(info3), 
+           Icon(
+           icon3
+         ),
+         ], 
+      ) 
+      )  
+  ]
+  ,
+); 
+
+
+Widget buildNewsPost(String newsimg, String headline, String content, String img, String user, DateTime datePosted, IconData options,
+ IconData icon1, String info1, IconData icon2, String info2, String info3, IconData icon3) => Container(
+     padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+     child: ListView(
+       children: <Widget>[
+         Column(
+           children: <Widget>[
+              Container(
+                 margin: new EdgeInsets.only(
+                 bottom: 20
+           ),       
+              child:postInfo(img, user, datePosted, options)
+              ), 
+                Container(
+                 margin: new EdgeInsets.only(
+                 bottom: 20
+           ),       
+              child: Column(
+                children: <Widget>[
+                  Expanded(
+                    child: Image.asset(
+                      newsimg
+                    )
+                    ),
+                  Text(headline),
+                  Text(content)  
+                ],
+              )
+              ),
+               Container(
+                 margin: new EdgeInsets.only(
+                 bottom: 20
+                        ),
+                child: postDetails(icon1, info1, icon2, info2, info3, icon3)       
+               )          
+           ],
+         )  
+
+       ],
+     ),
+ ); 
+   
 //lists
 
 List detailsNewsCard  = [
@@ -218,6 +353,14 @@ List homePageCards = [
   new CardCreator('Eventos', 'assets/images/dogcard5.png', Colors.red[300]),
   new CardCreator('Accesorios', 'assets/images/dogcard4.png', Colors.blue[300]),
   ]; 
+
+// void openNewView() {
+//      final pageRoute = new MaterialPageRoute(builder: (context) {
+//           return HomeScreen(); 
+//      });
+
+//      Navigator.of(context).push(pageRoute); 
+// }
 
 
 
