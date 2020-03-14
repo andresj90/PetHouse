@@ -1,21 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-void main() => runApp(MyApp());
+void main() =>  runApp(MaterialApp(
+    title: 'Named Routes Demo',
+    // Start the app with the "/" named route. In this case, the app starts
+    // on the FirstScreen widget.
+    initialRoute: '/',
+    routes: {
+      // When navigating to the "/" route, build the FirstScreen widget.
+      '/': (context) => HomeScreen(),
+      // When navigating to the "/second" route, build the SecondScreen widget.
+      '/second': (context) => HomeScreen(),
+    },
+  ));
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+
+
+
+
+/* CLASSES FOR THE VIEWS ON THE  APP  */
+
+
+
+class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'PetHouse',
-      theme: ThemeData(
-       
-        primarySwatch: Colors.deepPurple,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('First Screen'),
       ),
-      home: Scaffold(
-        appBar: appNavigationBar('PetHouse'),
-        body:  Column(
+      body: Column(
           children: <Widget>[
             Container(
               child: headerSlider
@@ -31,11 +45,17 @@ class MyApp extends StatelessWidget {
            
           ],
         )
-       
-      ),
     );
   }
 }
+
+
+
+
+
+
+
+
 
 
 
@@ -84,22 +104,6 @@ Widget generateCardLists(int cardNumber) => GridView.count(
 
 );
 
-/* */
-
-/* slider */
-// Widget headerSlider = CarouselSlider(
-//   height: 200.0,
-//   autoPlayInterval: Duration(seconds: 4),
-//   autoPlay: true,
-//   scrollDirection: Axis.horizontal,
-//   items: detailsNewsCard.map((tag) {
-//     return Builder(
-//       builder: (BuildContext context) {
-//         return buildNewsCardHome(tag, tag, tag,tag,Icons.new_releases,Colors.grey[100]);  
-//       },
-//     );
-//   }).toList(),
-// );
 
 
 Widget headerSlider = CarouselSlider.builder(
@@ -122,19 +126,48 @@ Widget buildNewsCardHome(String tag, String headline, String writtenby, String r
   child: Column(
     mainAxisAlignment: MainAxisAlignment.start,
     textDirection: TextDirection.ltr,
+    crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
       Container(
+        padding: EdgeInsets.fromLTRB(5.0, 2.0, 5.0, 2.0),
         decoration: new BoxDecoration(
-          color: Colors.orange[300]
+          color: Colors.orange[300],
+          borderRadius: BorderRadius.circular(10),
         ),
         child: Text(tag),
       ),
-      Text(headline), 
-      Text(writtenby), 
-      Row(children: <Widget>[
-        Icon(Icons.more),
+      Container(
+         margin: EdgeInsets.only(top: 30.0),
+         child: Text(
+           headline, 
+           style: TextStyle(
+             fontSize: 30.0, 
+             color: Colors.grey[700],
+             fontWeight: FontWeight.w500
+           ),
+         ),
+      ), 
+      Container(
+         margin: EdgeInsets.only(top: 2.0),
+         child: Text(
+           writtenby, 
+           style: TextStyle(
+             fontSize: 14.0,  
+             color: Colors.blueGrey,
+             fontWeight: FontWeight.w300
+           ),
+         ),
+      ),
+      Container(
+        margin: EdgeInsets.only(top: 35.0),
+        child: Row(children: <Widget>[
+        IconButton(
+          icon: Icon(icon), 
+          onPressed: null) 
+        ,
         Text(readMore)
-      ],)  
+      ],)
+      )  
     ],
   ),
 );
@@ -171,10 +204,10 @@ Widget buildNewsCardHome(String tag, String headline, String writtenby, String r
 //lists
 
 List detailsNewsCard  = [
-   {'tag':"news", 'title':"Nueva Ley Contra el maltrato animal", 'author' : 'Lauren Wright', 'more' : 'read more', 'icon' :Icons.info_outline, 'color': Colors.grey[100]}, 
-   {'tag': 'fashion' ,'title':'Colección de verano para tu masctoa', 'author' : 'Camile Hamp','more' : 'read more', 'icon' :Icons.info_outline, 'color': Colors.grey[100]},
-   {'tag': 'evento' ,'title':'Nueva Jornada de Vacunación', 'author' : 'Ramón Rivers','more' : 'read more', 'icon' :Icons.info_outline, 'color': Colors.grey[100]},
-   {'tag': 'evento','title':'Petatlón, Camina con mascota', 'author' : 'Alex Rivera','more' : 'read more', 'icon' :Icons.info_outline, 'color': Colors.grey[100]},
+   {'tag':"news", 'title':"Nueva Ley Contra el maltrato animal", 'author' : 'Lauren Wright', 'more' : 'read more', 'icon' :Icons.arrow_right, 'color': Colors.grey[100]}, 
+   {'tag': 'fashion' ,'title':'Colección de verano para tu mascota', 'author' : 'Camile Hamp','more' : 'read more', 'icon' :Icons.arrow_right, 'color': Colors.grey[100]},
+   {'tag': 'evento' ,'title':'Nueva Jornada de Vacunación', 'author' : 'Ramón Rivers','more' : 'read more', 'icon' :Icons.arrow_right, 'color': Colors.grey[100]},
+   {'tag': 'evento','title':'Petatlón, Caminata con mascota', 'author' : 'Alex Rivera','more' : 'read more', 'icon' :Icons.arrow_right, 'color': Colors.grey[100]},
 ];
 
 List homePageCards = [
