@@ -1,78 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-
-
-
-
-
+import '../widgets/appbar.dart';
+import '../widgets/bottomnavigationbar.dart';
 
 class HomeScreen extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Cuidadores'),
-      ),
-      body:    
-       Column(
+      appBar: ApplicationBar.generateAppBar('PetHouse', true),
+      body: Column(
           children: <Widget>[
-            Container(
-              child: headerSlider
-            ),
-            Container(
-              //  decoration: new BoxDecoration( 
-              //    color: Colors.amberAccent
-              //  ),
-               padding: EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
-               child: Text("Servicios"),
-             ),
-          
-            Expanded(
-              child: generateCardLists(homePageCards.length)
-              )  
-           
+            Flexible(
+              child: generateCardLists(homePageCards.length, 2, context)
+            ), 
           ],
-        )
-        );
+        ),
+
+      bottomNavigationBar: AppBottomNavigationBar.buildBottomNavigationBar(context),  
+      );
    
   }
 }
 
 
-
-
-
-
-
-
-
-/* Generic Components */
-
-/* APP BAR */
-
-Widget appNavigationBar(String title) => AppBar(
-  title: Text(title),
-  centerTitle:true,
-); 
-
-/* */
-
 /* Header */
 
-Widget servicesCard(String tittle, String img, Color color)=> Card(
-    color: color,
+Widget servicesCard(var card, BuildContext context)=> Card(
+    color: card.cardColor(),
     child: new InkWell(
       onTap: () {
-        
+        card.navigateRoutes(context);
       },
       child: Stack(
       
       children: <Widget>[
-        Image.asset(img),
+        Image.asset(card.cardImage()),
         Container(
           padding: EdgeInsets.fromLTRB(5.0, 5.0, 0.0, 0.0),
           child: Text(
-            tittle,
+            card.cardCategory(),
             style: cardText,
           ),
         )
@@ -85,13 +52,11 @@ Widget servicesCard(String tittle, String img, Color color)=> Card(
 
 // ROWS FOR CARDS 
 
-Widget generateCardLists(int cardNumber) => GridView.count(
-  crossAxisCount:2, 
-  // // physics: NeverScrollableScrollPhysics(),
-  // shrinkWrap: false,
+Widget generateCardLists(int cardNumber, int columns, BuildContext context) => GridView.count(
+  crossAxisCount:columns, 
   scrollDirection: Axis.vertical,
   children: List.generate(cardNumber, (index) {
-      return servicesCard(homePageCards[index].cardCategory(), homePageCards[index].cardImage(),homePageCards[index].cardColor()); 
+      return servicesCard(homePageCards[index], context); 
   }) 
 
 );
@@ -206,6 +171,16 @@ Widget buildNewsCardHome(String tag, String headline, String writtenby, String r
      return this.color; 
    }
 
+
+   void navigateRoutes(BuildContext context) {
+     switch (this.category) {
+       case 'Veterinaría':
+          Navigator.pushNamed(context, '/'); 
+         break;
+       default:
+     }
+   }
+
 }
 
 
@@ -224,18 +199,10 @@ List homePageCards = [
   new CardCreator('Guardería', 'assets/images/dogcard1.png', Colors.purple[300]),
   new CardCreator('Paseador', 'assets/images/dogcard5.png', Colors.green[300]),
   new CardCreator('Veterinaría', 'assets/images/dogcard4.png', Colors.orange[300]),
-  new CardCreator('Higiene', 'assets/images/dogcard1.png', Colors.yellow[300]),
+  new CardCreator('Higiene', 'assets/images/dogcard1.png', Colors.deepOrange[300]),
   new CardCreator('Eventos', 'assets/images/dogcard5.png', Colors.red[300]),
   new CardCreator('Accesorios', 'assets/images/dogcard4.png', Colors.blue[300]),
   ]; 
-
-// void openNewView() {
-//      final pageRoute = new MaterialPageRoute(builder: (context) {
-//           return HomeScreen(); 
-//      });
-
-//      Navigator.of(context).push(pageRoute); 
-// }
 
 
 

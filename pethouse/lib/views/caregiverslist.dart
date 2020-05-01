@@ -4,12 +4,32 @@ import 'package:flutter/material.dart';
 
 
 class CareGiverList extends StatelessWidget {
+   
+   
+
   @override
   Widget build(BuildContext context) {
+    // var mediaQuery = MediaQuery.of(context).size;
+
+    // if (mediaQuery.width > 600.0) {
+    //    return Text('BIGGER THAN 450'); 
+    // } else {
+
+    //   return Text('SMALLER THAN 450'); 
+    // } 
+
+    // ListView(
+    //     //  children: getVetListFromDB(list),
+    //     children: <Widget>[
+        
+    //     ],
+    //    ),
+
     return Scaffold(
-       body: ListView(
-         children: getVetListFromDB(list),
+       appBar: AppBar(
+         title: Text('PetHouse'),
        ),
+       bottomNavigationBar: BottomNavigationBar(items: null),
     );
   }
 }
