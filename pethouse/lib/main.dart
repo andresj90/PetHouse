@@ -1,20 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:path/path.dart' as Path;
+import 'home.dart';
 
-void main() =>  runApp(MaterialApp(
-    title: 'Named Routes Demo',
-    // Start the app with the "/" named route. In this case, the app starts
-    // on the FirstScreen widget.
-    initialRoute: '/',
-    routes: {
-      // When navigating to the "/" route, build the FirstScreen widget.
-      '/': (context) => HomeScreen(),
-      '/news': (context) => HomeScreen(),
-      // When navigating to the "/second" route, build the SecondScreen widget.
-      
-    },
-  ));
+
+
+void main() => runApp(MyApp());
 
 
 
@@ -27,68 +16,14 @@ void main() =>  runApp(MaterialApp(
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Cuidadores'),
-      ),
-      body:    
-       Column(
-          children: <Widget>[
-            Container(
-              child: headerSlider
-            ),
-            Container(
-              //  decoration: new BoxDecoration( 
-              //    color: Colors.amberAccent
-              //  ),
-               padding: EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
-               child: Text("Servicios"),
-             ),
-          
-            Expanded(
-              child: generateCardLists(homePageCards.length)
-              )  
-           
-          ],
-        )
-        );
-   
-  }
-}
-
-
-// second view
-// class NewsScreen extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('PetHouse'),
-//       ),
-//       body: buildNewsPost('assets/images/womananddog.jpg', 'Nueva Ley Decretada por el gobierno', 'noticia importante', 'assets/images/womananddog.jpg', 'Lauren Wright', DateTime.now(), 
-//       Icons.share, Icons.headset, '128', Icons.comment, '250', 'Share', Icons.share),
-//     );
-//   }
-// }
-
-
-class SecondScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Second Screen"),
-      ),
-      body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            // Navigate back to the first screen by popping the current route
-            // off the stack.
-            Navigator.pop(context);
-          },
-          child: Text('Go back!'),
-        ),
-      ),
+    return MaterialApp(
+      title: 'PetHouse',
+      theme: ThemeData(
+          hintColor: Color(0xFFC0F0E8),
+          primaryColor: Color(0xFF80E1D1),
+          fontFamily: "Montserrat",
+          canvasColor: Colors.transparent),
+          home: Home(),
     );
   }
 }
@@ -168,16 +103,14 @@ Widget servicesCard(String tittle, String img, Color color)=> Card(
 
 // ROWS FOR CARDS 
 
-Widget generateCardLists(int cardNumber) => GridView.count(
+Widget GenerateCardList(int cardNumber, Card card) => GridView.count(
   crossAxisCount:2, 
-  // // physics: NeverScrollableScrollPhysics(),
-  // shrinkWrap: false,
   scrollDirection: Axis.vertical,
   children: List.generate(cardNumber, (index) {
-      return servicesCard(homePageCards[index].cardCategory(), homePageCards[index].cardImage(),homePageCards[index].cardColor()); 
+         
   }) 
 
-);
+// );
 
 
 
@@ -427,17 +360,24 @@ Widget titleSection = Container(
       Expanded(
         /*1*/
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            /*2*/
-            Container(
-              padding: const EdgeInsets.only(bottom: 8),
-              child: Text(
-                'Nueva Ley contra el maltrato Animal',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+          // Column is also a layout widget. It takes a list of children and
+          // arranges them vertically. By default, it sizes itself to fit its
+          // children horizontally, and tries to be as tall as its parent.
+          //
+          // Invoke "debug painting" (press "p" in the console, choose the
+          // "Toggle Debug Paint" action from the Flutter Inspector in Android
+          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
+          // to see the wireframe for each widget.
+          //
+          // Column has various properties to control how it sizes itself and
+          // how it positions its children. Here we use mainAxisAlignment to
+          // center the children vertically; the main axis here is the vertical
+          // axis because Columns are vertical (the cross axis would be
+          // horizontal).
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'You have pushed the button this many times:',
             ),
             Text(
               'Laure Wright',
