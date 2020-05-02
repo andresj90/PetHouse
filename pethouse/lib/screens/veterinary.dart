@@ -119,7 +119,12 @@ Widget buildCardDualPanel(var veterinary, context, _VeterinaryState _veterinaryS
      // acá se setean los valores en ejecución 
    
       _veterinaryState.setState(() => {
-        _veterinaryState.name = veterinary["name"]
+        _veterinaryState.image = veterinary["image"],
+        _veterinaryState.name = veterinary["name"],
+        _veterinaryState.address = veterinary["address"],
+        _veterinaryState.distance = veterinary["distance"],
+        _veterinaryState.distancetime = veterinary["distancetime"],
+
       })
 
     },
@@ -206,16 +211,125 @@ Widget buildDualPanel(List veterinaryList, BuildContext context, double size, _V
     children: <Widget>[
       Expanded(
         flex: 2,
-        child: 
+        child:
         buildListView(veterinaryList, context, size, veterinary)),
       Expanded(
           flex: 4,
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            child: Text(veterinary.name),
-          )),
-    ],
-  );
+          child:  SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Center(
+                    child: Container(
+                        width: 150.0,
+                        height: 150.0,
+
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(veterinary.image),
+                              fit: BoxFit.cover,
+                            ),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(75.0),
+                            ),
+                            boxShadow: [
+                              BoxShadow(
+                                  blurRadius: 15.0, color: Colors.black)
+                            ])),
+                  ),
+                  SizedBox(
+                    height: 10,
+                    width: double.infinity,
+                  ),
+                  Row(
+                    children: <Widget>[
+                      SizedBox(
+                        width: 20,
+                        height: 25,
+                      ),
+                      Text(
+                        'Nombre: ' + veterinary.name,
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ],
+                  ),
+
+                  Row(
+                    children: <Widget>[
+                      SizedBox(width: 20, height: 30),
+                      Text(
+                        'Direccion: ' + veterinary.address,
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      SizedBox(width: 20, height: 30),
+                      Text(
+                        'Distancia: ' + veterinary.distance,
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      SizedBox(
+                        width: 20,
+                        height: 20,
+                      ),
+                      Text(
+                        'Tiempo en llegar: ' + veterinary.distancetime,
+                        style: TextStyle(
+                            fontSize: 25,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment:  CrossAxisAlignment.center,
+                    children: <Widget>[
+                      SizedBox(height: 100),
+                      Container(
+                          height: 50.0,
+                          width: 125.0,
+                          alignment: Alignment.center,
+                          child: Material(
+                            borderRadius: BorderRadius.circular(20.0),
+                            shadowColor: Colors.greenAccent,
+                            color: Colors.green,
+                            elevation: 7.0,
+                            child: GestureDetector(
+                              onTap: () {},
+                              child: Center(
+                                child: Text(
+                                  'Pedir Cita',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Montserrat', fontSize: 18.0),
+                                ),
+                              ),
+                            ),
+                          )),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ),
+  ]);
 }
 
 List vetList = [

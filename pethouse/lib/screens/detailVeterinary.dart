@@ -28,7 +28,7 @@ class DetailVeterinary extends StatelessWidget {
           children: <Widget>[
             SizedBox(
               width: 20,
-              height: 20,
+              height: 25,
             ),
             Text(
               'Nombre: ' + data['name'],
@@ -39,9 +39,10 @@ class DetailVeterinary extends StatelessWidget {
             ),
           ],
         ),
+
         Row(
           children: <Widget>[
-            SizedBox(width: 20, height: 20),
+            SizedBox(width: 20, height: 30),
             Text(
               'Direccion: ' + data['address'],
               style: TextStyle(
@@ -53,7 +54,7 @@ class DetailVeterinary extends StatelessWidget {
         ),
         Row(
           children: <Widget>[
-            SizedBox(width: 20, height: 20),
+            SizedBox(width: 20, height: 30),
             Text(
               'Distancia: ' + data['distance'],
               style: TextStyle(
@@ -78,6 +79,34 @@ class DetailVeterinary extends StatelessWidget {
             ),
           ],
         ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment:  CrossAxisAlignment.center,
+          children: <Widget>[
+            SizedBox(height: 100),
+            Container(
+                height: 50.0,
+                width: 125.0,
+                alignment: Alignment.center,
+                child: Material(
+                  borderRadius: BorderRadius.circular(20.0),
+                  shadowColor: Colors.greenAccent,
+                  color: Colors.green,
+                  elevation: 7.0,
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: Center(
+                      child: Text(
+                        'Pedir Cita',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'Montserrat', fontSize: 18.0),
+                      ),
+                    ),
+                  ),
+                )),
+          ],
+        )
       ],
     );
   }
@@ -159,18 +188,7 @@ class DetailVeterinary extends StatelessWidget {
         ),
       );
 
-  Widget _pictureLandScape(context, data) => Container(
-        width: MediaQuery.of(context).size.width / 2.5,
-        height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-          image: new DecorationImage(
-              fit: BoxFit.cover, image: AssetImage(data['image'])),
-        ),
-      );
-
   Widget _layoudDetails(context, data) {
-    Orientation orientation = MediaQuery.of(context).orientation;
-    if (orientation == Orientation.portrait) {
       return SingleChildScrollView(
           child: Column(
         children: <Widget>[
@@ -178,17 +196,5 @@ class DetailVeterinary extends StatelessWidget {
           portraitDetail(context, data),
         ],
       ));
-    } else {
-      return Row(
-        children: <Widget>[
-          _pictureLandScape(context, data),
-          Container(
-            width: MediaQuery.of(context).size.width / 1.8,
-            height: MediaQuery.of(context).size.height,
-            child: landScapeDetail(context, data),
-          )
-        ],
-      );
-    }
   }
 }
