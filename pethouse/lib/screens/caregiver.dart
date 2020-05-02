@@ -84,6 +84,11 @@ Widget buildCardDualPanel(var veterinary, BuildContext context) {
                       backgroundImage: AssetImage(veterinary["image"]),
                     ),
             ),
+            title: Text(veterinary["name"]),
+            subtitle: Text(veterinary["address"]),
+            trailing: Icon(Icons.chevron_right), 
+          )
+            
           ),
           ],
         ),
