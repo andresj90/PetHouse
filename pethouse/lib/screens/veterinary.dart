@@ -1,5 +1,6 @@
 import 'dart:ffi';
 import 'package:flutter/material.dart';
+import 'package:pethouse/screens/detailVeterinary.dart';
 import 'package:pethouse/views/veterinaryList.dart';
 import '../widgets/bottomnavigationbar.dart';
 import '../widgets/appbar.dart';
@@ -28,18 +29,25 @@ class Veterinary extends StatelessWidget {
 
 // Widgets
 
-Widget buildCard(var veterinary) {
-  return Card(
-    child: Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Expanded(
-            flex: 1,
-            child: Image.asset(
-              veterinary["image"],
-              // fit: BoxFit.cover,
-            )),
-        Expanded(
+Widget buildCard(var veterinary, context) {
+  return InkWell(
+    onTap: () =>
+    {
+      Navigator.push(context,
+          MaterialPageRoute(
+              builder: (BuildContext context) => DetailVeterinary(veterinary)))
+    },
+  child: Card(
+        child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Expanded(
+                flex: 1,
+                child: Image.asset(
+                  veterinary["image"],
+                  // fit: BoxFit.cover,
+                )),
+            Expanded(
             flex: 2,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 20),
@@ -73,13 +81,21 @@ Widget buildCard(var veterinary) {
             ))
       ],
     ),
+  ),
   );
 }
 
 //buildcardforDual
 
-Widget buildCardDualPanel(var veterinary) {
-  return Card(
+Widget buildCardDualPanel(var veterinary, context) {
+  return InkWell(
+    onTap: () =>
+    {
+      Navigator.push(context,
+          MaterialPageRoute(
+              builder: (BuildContext context) => DetailVeterinary(veterinary)))
+    },
+  child: Card(
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -133,6 +149,7 @@ Widget buildCardDualPanel(var veterinary) {
         ),
       ],
     ),
+  ),
   );
 }
 
@@ -143,13 +160,13 @@ Widget buildListView(List veterinaryList, BuildContext context, double size) {
     return ListView.builder(
         itemCount: veterinaryList.length,
         itemBuilder: (BuildContext context, int index) {
-          return buildCard(veterinaryList[index]);
+          return buildCard(veterinaryList[index], context);
         });
   } else {
     return ListView.builder(
         itemCount: veterinaryList.length,
         itemBuilder: (BuildContext context, int index) {
-          return buildCardDualPanel(veterinaryList[index]);
+          return buildCardDualPanel(veterinaryList[index], context);
         });
   }
 }
@@ -178,17 +195,17 @@ List vetList = [
     "distancetime": "10 Min"
   },
   {
-    "image": "assets/images/veterinary1.jpg",
-    "name": "Veterinary 1",
-    "address": "Address 1",
-    "distance": "5 Miles",
-    "distancetime": "10 Min"
+    "image": "assets/images/veterinary2.jpg",
+    "name": "Veterinary 2",
+    "address": "Address 2",
+    "distance": "8 Miles",
+    "distancetime": "15 Min"
   },
   {
-    "image": "assets/images/veterinary1.jpg",
-    "name": "Veterinary 1",
-    "address": "Address 1",
-    "distance": "5 Miles",
-    "distancetime": "10 Min"
+    "image": "assets/images/veterinary3.jpg",
+    "name": "Veterinary 3",
+    "address": "Address 33",
+    "distance": "15 Miles",
+    "distancetime": "25 Min"
   },
 ];
