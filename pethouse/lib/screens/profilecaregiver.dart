@@ -100,7 +100,6 @@ Widget portraitVista(context,data) {
             ))
       ],
     ),
-
   );
 }
 
