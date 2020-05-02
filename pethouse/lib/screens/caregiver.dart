@@ -20,7 +20,7 @@ class CareGiver extends StatelessWidget {
       appBar: ApplicationBar.generateAppBar('Caregivers', true),
       body: widget,
       bottomNavigationBar:
-          AppBottomNavigationBar.buildBottomNavigationBar(context),
+      AppBottomNavigationBar.buildBottomNavigationBar(context),
     );
   }
 }
@@ -29,9 +29,11 @@ class CareGiver extends StatelessWidget {
 
 Widget buildCard(var veterinary, BuildContext context) {
   return InkWell(
-    onTap: () => {
+    onTap: () =>
+    {
       Navigator.push(context,
-          MaterialPageRoute(builder: (BuildContext context) => ProfileCareGiver(veterinary)))
+          MaterialPageRoute(
+              builder: (BuildContext context) => ProfileCareGiver(veterinary)))
     },
     child: Card(
       child: Row(
@@ -82,49 +84,50 @@ Widget buildCardDualPanel(var veterinary, BuildContext context) {
                       backgroundImage: AssetImage(veterinary["image"]),
                     ),
             ),
-            ],
           ),
-          SizedBox(
-           height: 5,
-          ),
-          Row(
-                                children: <Widget>[
-                                  Icon(
-                                    Icons.pin_drop
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text(
-                                    veterinary["distance"]
-                                  ),
-                                  SizedBox(
-                                    width: 15,
-                                  ),
-                                   Icon(
-                                    Icons.timer
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text(
-                                    veterinary["distancetime"]
-                                  )
-                                ],
-                              ),
-          SizedBox(
-           height: 5,
-          ), 
+          ],
+        ),
+        SizedBox(
+          height: 5,
+        ),
+        Row(
+          children: <Widget>[
+            Icon(
+                Icons.pin_drop
+            ),
+            SizedBox(
+              width: 5,
+            ),
+            Text(
+                veterinary["distance"]
+            ),
+            SizedBox(
+              width: 15,
+            ),
+            Icon(
+                Icons.timer
+            ),
+            SizedBox(
+              width: 5,
+            ),
+            Text(
+                veterinary["distancetime"]
+            )
+          ],
+        ),
+        SizedBox(
+          height: 5,
+        ),
         ],
       ),
-    
-     );
+
+    );
 }
 
 //ListView Builder
 
-Widget buildListView(
-    List veterinaryList, BuildContext maincontext, double size) {
+Widget buildListView(List veterinaryList, BuildContext maincontext,
+    double size) {
   if (size <= 600) {
     return ListView.builder(
         itemCount: veterinaryList.length,
@@ -135,13 +138,10 @@ Widget buildListView(
     return ListView.builder(
         itemCount: veterinaryList.length,
         itemBuilder: (BuildContext context, int index) {
-            return buildCardDualPanel(veterinaryList[index], maincontext); 
-          }
+          return buildCardDualPanel(veterinaryList[index], maincontext);
+        }
     );
-     
-   }
-
-  
+  }
 }
 
 //Build dual panel
@@ -162,40 +162,38 @@ Widget buildDualPanel(List veterinaryList, BuildContext context, double size) {
 List vetList = [
   {
     "image": "assets/images/caregiver1.jpeg",
-    "name" : "David Garcia", 
-    "address" : "Calle 1 Bogotá" , 
+    "name": "David Garcia",
+    "address": "Calle 1 Bogotá",
     "about": "Tengo un gatito criollo divino y una perrita también criolla, es divertido pasar tiempo con ellos, más con Afrodita a ella le encanta salir a el parque a jugar, le enseñé trucos para que se gane premios, es muy amorosa igual me garfio pero ya saben los gatitos son muy independientes, a el no le gusta que lo moleste tanto se la pasa durmiendo jaja, me gusta saber que tengo mucho amor de ellos.!!"
-     
   },
   {
     "image": "assets/images/caregiver6.jpg",
-    "name" : "Alex Correa", 
-    "address" : "Calle 2 Bogotá" , 
+    "name": "Alex Correa",
+    "address": "Calle 2 Bogotá",
     "about": "Amigos peluditos SA, trabajamos en función de las mascotas porque tenemos varias y sabemos que necesitan atención, diversión aire libre,los mejores accesorios,comida y servicios."
   },
   {
     "image": "assets/images/caregiver1.jpg",
-    "name" : "Alberto Bernal", 
-    "address" : "Calle 3 Bogotá" , 
-    "about" : "Mi nombre es Alberto Bernal soy de Manizales vivo en Bogotá hace 5 años en los cuales trabaje 3 en una guardería canina en donde pude fortalecer mis conocimientos en cuidado canino, Además de amar a los animales cuento con la experiencia. soy auxiliar veterinario y cuento con diplomado básico de etología y adiestramiento canino." , 
+    "name": "Alberto Bernal",
+    "address": "Calle 3 Bogotá",
+    "about": "Mi nombre es Alberto Bernal soy de Manizales vivo en Bogotá hace 5 años en los cuales trabaje 3 en una guardería canina en donde pude fortalecer mis conocimientos en cuidado canino, Además de amar a los animales cuento con la experiencia. soy auxiliar veterinario y cuento con diplomado básico de etología y adiestramiento canino.",
   },
   {
     "image": "assets/images/caregiver3.jpg",
-    "name" : "Lucy Cantor", 
-    "address" : "Calle 4 Bogotá" , 
+    "name": "Lucy Cantor",
+    "address": "Calle 4 Bogotá",
     "about": "Tengo un gatito criollo divino y una perrita también criolla, es divertido pasar tiempo con ellos, más con Afrodita a ella le encanta salir a el parque a jugar, le enseñé trucos para que se gane premios, es muy amorosa igual me garfio pero ya saben los gatitos son muy independientes, a el no le gusta que lo moleste tanto se la pasa durmiendo jaja, me gusta saber que tengo mucho amor de ellos.!!"
-     
   },
   {
     "image": "assets/images/caregiver4.jpg",
-    "name" : "Gabriela Montana", 
-    "address" : "Calle 5 Bogotá " , 
+    "name": "Gabriela Montana",
+    "address": "Calle 5 Bogotá ",
     "about": "Amigos peluditos SA, trabajamos en función de las mascotas porque tenemos varias y sabemos que necesitan atención, diversión aire libre,los mejores accesorios,comida y servicios."
   },
   {
     "image": "assets/images/caregiver5.jpeg",
-    "name" : "Alexa Smith", 
-    "address" : "Calle 6 Bogotá" , 
-    "about" : "Me gustan toda clase de animales, sobre todo los perros, me encanta pasar tiempo con ellos, siento que tengo una conexión con los animales y se me facilita mucho la relación con ellos." , 
+    "name": "Alexa Smith",
+    "address": "Calle 6 Bogotá",
+    "about": "Me gustan toda clase de animales, sobre todo los perros, me encanta pasar tiempo con ellos, siento que tengo una conexión con los animales y se me facilita mucho la relación con ellos.",
   },
 ];
