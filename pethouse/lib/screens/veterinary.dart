@@ -5,16 +5,37 @@ import 'package:pethouse/views/veterinaryList.dart';
 import '../widgets/bottomnavigationbar.dart';
 import '../widgets/appbar.dart';
 
-class Veterinary extends StatelessWidget {
+class Veterinary extends StatefulWidget {
+  @override
+  _VeterinaryState createState() => _VeterinaryState();
+}
+
+class _VeterinaryState extends State<Veterinary> {
+    
+    String image;  
+    String name; 
+    String address; 
+    String distance; 
+    String distancetime; 
+
+     _VeterinaryState({
+       this.image = '', 
+       this.name = '', 
+       this.address = '', 
+       this.distance = '', 
+       this.distancetime = '', 
+     });
+
   @override
   Widget build(BuildContext context) {
+
     var screenSize = MediaQuery.of(context);
     Widget widget;
 
     if (screenSize.size.width <= 600) {
-      widget = buildListView(vetList, context, screenSize.size.width);
+      widget = buildListView(vetList, context, screenSize.size.width, this);
     } else {
-      widget = buildDualPanel(vetList, context, screenSize.size.width);
+      widget = buildDualPanel(vetList, context, screenSize.size.width, this);
     }
 
     return Scaffold(
@@ -87,13 +108,20 @@ Widget buildCard(var veterinary, context) {
 
 //buildcardforDual
 
-Widget buildCardDualPanel(var veterinary, context) {
+Widget buildCardDualPanel(var veterinary, context, _VeterinaryState _veterinaryState) {
   return InkWell(
     onTap: () =>
     {
-      Navigator.push(context,
-          MaterialPageRoute(
-              builder: (BuildContext context) => DetailVeterinary(veterinary)))
+      // Navigator.push(context,
+      //     MaterialPageRoute(
+      //         builder: (BuildContext context) => DetailVeterinary(veterinary)))
+  
+     // acá se setean los valores en ejecución 
+   
+      _veterinaryState.setState(() => {
+        _veterinaryState.name = veterinary["name"]
+      })
+
     },
   child: Card(
     child: Column(
@@ -155,7 +183,7 @@ Widget buildCardDualPanel(var veterinary, context) {
 
 //ListView Builder
 
-Widget buildListView(List veterinaryList, BuildContext context, double size) {
+Widget buildListView(List veterinaryList, BuildContext context, double size, _VeterinaryState veterinary) {
   if (size <= 600) {
     return ListView.builder(
         itemCount: veterinaryList.length,
@@ -166,21 +194,22 @@ Widget buildListView(List veterinaryList, BuildContext context, double size) {
     return ListView.builder(
         itemCount: veterinaryList.length,
         itemBuilder: (BuildContext context, int index) {
-          return buildCardDualPanel(veterinaryList[index], context);
+          return buildCardDualPanel(veterinaryList[index], context, veterinary);
         });
   }
 }
 
 //Build dual panel
 
-Widget buildDualPanel(List veterinaryList, BuildContext context, double size) {
+Widget buildDualPanel(List veterinaryList, BuildContext context, double size, _VeterinaryState veterinary) {
   return Row(
     children: <Widget>[
-      Expanded(child: buildListView(veterinaryList, context, size)),
+      Expanded(child: buildListView(veterinaryList, context, size, veterinary)),
       Expanded(
           flex: 3,
           child: Container(
-            decoration: BoxDecoration(color: Colors.amber),
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            child: Text(veterinary.name),
           )),
     ],
   );

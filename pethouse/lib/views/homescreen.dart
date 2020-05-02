@@ -114,7 +114,7 @@ Widget generateCardLists(int cardNumber, int columns, BuildContext context) => G
 
 List homePageCards = [
   new CardCreator('Guardería', 'assets/images/dogcard1.png', Colors.purple[300]),
-  new CardCreator('Paseador', 'assets/images/dogcard5.png', Colors.green[300]),
+  new CardCreator('Paseador', 'assets/images/dogcard6.png', Colors.green[300]),
   new CardCreator('Veterinaría', 'assets/images/dogcard4.png', Colors.orange[300]),
   new CardCreator('Higiene', 'assets/images/dogcard1.png', Colors.deepOrange[300]),
   new CardCreator('Eventos', 'assets/images/dogcard5.png', Colors.red[300]),
