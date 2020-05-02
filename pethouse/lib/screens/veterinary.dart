@@ -136,7 +136,7 @@ Widget buildCardDualPanel(var veterinary, context, _VeterinaryState _veterinaryS
                   fit: BoxFit.fitHeight,
                 )),
             Expanded(
-                flex: 2,
+                flex: 3,
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5),
                   child: Column(
@@ -204,9 +204,12 @@ Widget buildListView(List veterinaryList, BuildContext context, double size, _Ve
 Widget buildDualPanel(List veterinaryList, BuildContext context, double size, _VeterinaryState veterinary) {
   return Row(
     children: <Widget>[
-      Expanded(child: buildListView(veterinaryList, context, size, veterinary)),
       Expanded(
-          flex: 3,
+        flex: 2,
+        child: 
+        buildListView(veterinaryList, context, size, veterinary)),
+      Expanded(
+          flex: 4,
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: Text(veterinary.name),

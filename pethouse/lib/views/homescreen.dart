@@ -6,6 +6,17 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+   
+    var screenSize = MediaQuery.of(context);
+    Widget widget;  
+
+    // if (screenSize.size.width<= 600) {
+    //    widget = buildListView(emailList, context,screenSize.size.width, this); 
+    // } else {
+    //    widget = buildDualPanel(emailList, context,screenSize.size.width, this);
+    // }
+
+
     return Scaffold(
       appBar: ApplicationBar.generateAppBar('PetHouse', true),
       body: Column(
