@@ -33,18 +33,10 @@ class _EntryPointState extends State<EntryPoint> {
       '/home':(context) => HomeScreen(),
       '/caregiver':(context) => CareGiver(),
       '/messenger':(context) => Messenger(),
+      // '/profilecaregiver':(context) => ProfileCareGiver(''),
       // '/emaildetail':(context) => EmailDetails(),
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
+    
+  );
+}
+}

@@ -8,6 +8,7 @@ class ProfileCareGiver extends StatelessWidget {
    var data;
 
   ProfileCareGiver(this.data);
+  
   @override
   Widget build(BuildContext context) {
     // TODO: implement build

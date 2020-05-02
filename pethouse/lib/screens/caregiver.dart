@@ -4,16 +4,34 @@ import 'package:pethouse/screens/veterinary.dart';
 import '../widgets/bottomnavigationbar.dart';
 import '../widgets/appbar.dart';
 
-class CareGiver extends StatelessWidget {
+class CareGiver extends StatefulWidget {
+  @override
+  _CareGiverState createState() => _CareGiverState();
+}
+
+class _CareGiverState extends State<CareGiver> {
+ 
+  String image;  
+  String  name; 
+  String  address; 
+  String  about; 
+
+  _CareGiverState({
+   this.image = "", 
+   this.name = "", 
+   this.address = "", 
+   this.about = "", 
+  });  
+
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context);
     Widget widget;
 
     if (screenSize.size.width <= 600) {
-      widget = buildListView(vetList, context, screenSize.size.width);
+      widget = buildListView(vetList, context, screenSize.size.width, this);
     } else {
-      widget = buildDualPanel(vetList, context, screenSize.size.width);
+      widget = buildDualPanel(vetList, context, screenSize.size.width, this);
     }
 
     return Scaffold(
@@ -68,11 +86,17 @@ Widget buildCard(var veterinary, BuildContext context) {
 
 //buildcardforDual 
 
-Widget buildCardDualPanel(var veterinary, BuildContext context) {
-   return 
-   InkWell(
+Widget buildCardDualPanel(var veterinary, BuildContext context, _CareGiverState caregiver) {  
+    return InkWell(
         onTap: () => {
-          Navigator.pushNamed(context, '/profilecaregiver'),
+          //  Navigator.push(
+          //     context,
+          //     MaterialPageRoute(builder: (context) => ProfileCareGiver(veterinary))
+          // )
+
+          caregiver.setState(() => {
+            caregiver.about = veterinary["about"]
+          })
         },
         child: Card(
           child: ListTile(
@@ -87,52 +111,18 @@ Widget buildCardDualPanel(var veterinary, BuildContext context) {
             title: Text(veterinary["name"]),
             subtitle: Text(veterinary["address"]),
             trailing: Icon(Icons.chevron_right), 
-          )
-            
           ),
-          ],
-        ),
-        SizedBox(
-          height: 5,
-        ),
-        Row(
-          children: <Widget>[
-            Icon(
-                Icons.pin_drop
-            ),
-            SizedBox(
-              width: 5,
-            ),
-            Text(
-                veterinary["distance"]
-            ),
-            SizedBox(
-              width: 15,
-            ),
-            Icon(
-                Icons.timer
-            ),
-            SizedBox(
-              width: 5,
-            ),
-            Text(
-                veterinary["distancetime"]
-            )
-          ],
-        ),
-        SizedBox(
-          height: 5,
-        ),
-        ],
-      ),
+            
+        ), 
 
-    );
+      );
+   
 }
 
 //ListView Builder
 
 Widget buildListView(List veterinaryList, BuildContext maincontext,
-    double size) {
+    double size, _CareGiverState caregiver) {
   if (size <= 600) {
     return ListView.builder(
         itemCount: veterinaryList.length,
@@ -143,7 +133,7 @@ Widget buildListView(List veterinaryList, BuildContext maincontext,
     return ListView.builder(
         itemCount: veterinaryList.length,
         itemBuilder: (BuildContext context, int index) {
-          return buildCardDualPanel(veterinaryList[index], maincontext);
+          return buildCardDualPanel(veterinaryList[index], maincontext, caregiver);
         }
     );
   }
@@ -151,14 +141,15 @@ Widget buildListView(List veterinaryList, BuildContext maincontext,
 
 //Build dual panel
 
-Widget buildDualPanel(List veterinaryList, BuildContext context, double size) {
+Widget buildDualPanel(List veterinaryList, BuildContext context, double size, _CareGiverState caregiver) {
   return Row(
     children: <Widget>[
-      Expanded(child: buildListView(veterinaryList, context, size)),
+      Expanded(child: buildListView(veterinaryList, context, size, caregiver)),
       Expanded(
           flex: 3,
           child: Container(
-            decoration: BoxDecoration(color: Colors.amber),
+            padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+            child: Text(caregiver.about),
           )),
     ],
   );

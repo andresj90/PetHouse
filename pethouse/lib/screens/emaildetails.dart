@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import '../widgets/appbar.dart';
 
 
 class EmailDetails extends StatelessWidget {
@@ -13,6 +13,7 @@ class EmailDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       appBar: ApplicationBar.generateAppBar('Inbox', true),
        body: 
        
       //  Text(this.email.toString()) 
