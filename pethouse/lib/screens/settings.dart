@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import '../main.dart';
 
 class Setting extends StatefulWidget {
   static var tema = ThemeData.dark();
@@ -8,7 +8,7 @@ class Setting extends StatefulWidget {
 }
 
 class _SettingState extends State<Setting> {
-  static var tema = ThemeData.light();
+  
   bool flag = false; 
 
   @override
@@ -20,10 +20,20 @@ class _SettingState extends State<Setting> {
           value: false, 
           onChanged: (value) {
             if(value) {
+               flag=!flag;
                setState(() {
-                 MaterialApp(
-                   theme: ThemeData.light(),
-                 );
+                 print(flag);
+                 if (flag) {
+                  //  EntryPoint.changeTheme = ThemeData.dark();
+                      MaterialApp(
+                          theme: ThemeData.dark(),
+                      );
+                 } else {
+                    // EntryPoint.changeTheme = ThemeData.light();
+                           MaterialApp(
+                          theme: ThemeData.light(),
+                      );
+                 }
                
                });
             }

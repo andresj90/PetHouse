@@ -63,87 +63,9 @@ Widget generateCardLists(int cardNumber, int columns, BuildContext context) => G
 
 
 
-Widget headerSlider = CarouselSlider.builder(
-   autoPlay: true,
-   autoPlayInterval: Duration(seconds: 3),
-   itemCount: detailsNewsCard.length,
-   itemBuilder: (BuildContext context, int i) =>
-       
-      buildNewsCardHome(detailsNewsCard[i]['tag'], detailsNewsCard[i]['title'],  detailsNewsCard[i]['author'], 
-         detailsNewsCard[i]['more'],  detailsNewsCard[i]['icon'],  detailsNewsCard[i]['color']),
-      
-   );
 
 // NEWS CARD HEADER
 
-
-Widget buildNewsCardHome(String tag, String headline, String writtenby, String readMore, IconData icon, Color color) => Card(
-  color: color,
-
-  elevation: 1.0,
-  child: Container(
-    padding: EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
-    child: Column(
-    mainAxisAlignment: MainAxisAlignment.start,
-    textDirection: TextDirection.ltr,
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: <Widget>[
-      Container(
-        padding: EdgeInsets.fromLTRB(5.0, 2.0, 5.0, 2.0),
-        decoration: new BoxDecoration(
-          color: Colors.orange[300],
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Text(tag),
-      ),
-      Container(
-         margin: EdgeInsets.only(top: 30.0),
-         child: Text(
-           headline, 
-           style: TextStyle(
-             fontSize: 30.0, 
-             color: Colors.grey[700],
-             fontWeight: FontWeight.w500
-           ),
-         ),
-      ), 
-      Container(
-         margin: EdgeInsets.only(top: 2.0),
-         child: Text(
-           writtenby, 
-           style: TextStyle(
-             fontSize: 14.0,  
-             color: Colors.blueGrey,
-             fontWeight: FontWeight.w300
-           ),
-         ),
-      ),
-      Expanded(
-        child: Container(
-        margin: EdgeInsets.only(top: 35.0),
-        child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-        
-         InkWell(
-           child: Text(readMore),
-           onTap: () {
-            print('hello');
-          },
-         ),
-         IconButton(
-          icon: Icon(icon), 
-          onPressed: () {
-            print('hello');
-          },
-          ) 
-        ,
-      ],)
-      ))  
-    ],
-  ),
-  )
-);
 
 
 // VARIABLES and classes
@@ -175,8 +97,11 @@ Widget buildNewsCardHome(String tag, String headline, String writtenby, String r
    void navigateRoutes(BuildContext context) {
      switch (this.category) {
        case 'Veterinaría':
-          Navigator.pushNamed(context, '/'); 
-         break;
+          Navigator.pushNamed(context, '/veterinary'); 
+          break;
+       case 'Paseador':
+          Navigator.pushNamed(context, '/caregiver'); 
+          break;
        default:
      }
    }
@@ -186,14 +111,7 @@ Widget buildNewsCardHome(String tag, String headline, String writtenby, String r
 
 
    
-//lists
 
-List detailsNewsCard  = [
-   {'tag':"news", 'title':"Nueva Ley Contra el maltrato animal", 'author' : 'Lauren Wright', 'more' : 'read more', 'icon' :Icons.arrow_right, 'color': Colors.grey[100]}, 
-   {'tag': 'fashion' ,'title':'Colección de verano para tu mascota', 'author' : 'Camile Hamp','more' : 'read more', 'icon' :Icons.arrow_right, 'color': Colors.grey[100]},
-   {'tag': 'evento' ,'title':'Nueva Jornada de Vacunación', 'author' : 'Ramón Rivers','more' : 'read more', 'icon' :Icons.arrow_right, 'color': Colors.grey[100]},
-   {'tag': 'evento','title':'Petatlón, Caminata con mascota', 'author' : 'Alex Rivera','more' : 'read more', 'icon' :Icons.arrow_right, 'color': Colors.grey[100]},
-];
 
 List homePageCards = [
   new CardCreator('Guardería', 'assets/images/dogcard1.png', Colors.purple[300]),
