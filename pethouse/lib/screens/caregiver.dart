@@ -91,7 +91,7 @@ Widget buildCardDualPanel(var veterinary, BuildContext context) {
             ),
             title: Text(veterinary["name"]),
             subtitle: Text(veterinary["address"]),
-            trailing: Icon(Icons.chevron_right),
+            trailing: Icon(Icons.chevron_right), 
           )
             
           ),
