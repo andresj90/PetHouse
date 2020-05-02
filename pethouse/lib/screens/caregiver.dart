@@ -74,7 +74,7 @@ Widget buildCard(var veterinary, BuildContext context) {
 //buildcardforDual 
 
 Widget buildCardDualPanel(var veterinary, BuildContext context) {
-    return 
+   return 
    InkWell(
         onTap: () => {
           Navigator.pushNamed(context, '/profilecaregiver'),
