@@ -25,14 +25,18 @@ class _SettingState extends State<Setting> {
                  print(flag);
                  if (flag) {
                   //  EntryPoint.changeTheme = ThemeData.dark();
-                      MaterialApp(
-                          theme: ThemeData.dark(),
-                      );
+                      // MaterialApp(
+                      //     theme: ThemeData.dark(),
+                      // );
+                     
+                      EntryPoint.changeTheme(flag); 
                  } else {
                     // EntryPoint.changeTheme = ThemeData.light();
-                           MaterialApp(
-                          theme: ThemeData.light(),
-                      );
+                      //      MaterialApp(
+                      //     theme: ThemeData.light(),
+                      // );
+                 
+                      EntryPoint.changeTheme(flag);
                  }
                
                });
