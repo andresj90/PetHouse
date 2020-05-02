@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:pethouse/screens/Messenger.dart';
+import 'package:pethouse/screens/emaildetails.dart';
 import 'package:pethouse/screens/profilecaregiver.dart';
 import 'package:pethouse/screens/veterinary.dart';
 import 'package:pethouse/screens/caregiver.dart';
 import 'views/homescreen.dart';
 import 'screens/settings.dart';
+
 
 void main() =>  runApp(EntryPoint());
 
@@ -29,7 +32,8 @@ class _EntryPointState extends State<EntryPoint> {
       '/settings':(context) => Setting(),
       '/home':(context) => HomeScreen(),
       '/caregiver':(context) => CareGiver(),
-//      '/profilecaregiver':(context) => ProfileCareGiver(),
+      '/messenger':(context) => Messenger(),
+      // '/emaildetail':(context) => EmailDetails(),
 
 
 

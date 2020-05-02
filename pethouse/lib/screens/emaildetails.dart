@@ -2,33 +2,28 @@ import 'package:flutter/material.dart';
 
 
 
-class NewsDetails extends StatelessWidget {
-  String image; 
-  String name; 
-  String date; 
-  String subject; 
-  String emailBody; 
+class EmailDetails extends StatelessWidget {
 
-  
-  NewsDetails({
-    this.image, 
-    this.name, 
-    this.date, 
-    this.subject, 
-    this.emailBody
-  }); 
-  
-  
+   var email; 
+
+  EmailDetails(
+     this.email
+  ); 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: buildNewsLayout()
+       body: 
+       
+      //  Text(this.email.toString()) 
+       
+      buildNewsLayout(this.email)
     );  
   }
 
 }
 
-Widget buildNewsLayout() =>Stack(
+Widget buildNewsLayout(var email) =>Stack(
   children: <Widget>[
     Container(
       decoration: BoxDecoration(
@@ -40,10 +35,10 @@ Widget buildNewsLayout() =>Stack(
     
     ),
     Positioned(
-     bottom: 48.0,
-     left: 10.0,
-     right: 10.0,
-     child: Card(
+  bottom: 48.0,
+  left: 10.0,
+  right: 10.0,
+  child: Card(
     elevation: 8.0,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(8.0),
@@ -53,7 +48,7 @@ Widget buildNewsLayout() =>Stack(
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: Text(
-            "Vacunación antirrábica para caninos y felinos",
+            email["subject"],
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 20.0,
@@ -65,7 +60,7 @@ Widget buildNewsLayout() =>Stack(
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: Text(
-            "La rabia es una enfermedad zoonótica, fatal y transmisible, producida por el virus rábico que afecta a los animales de sangre caliente incluyendo al hombre. La transmisión al hombre se produce por la mordedura, arañazo o lamedura de heridas superficiales en la piel (abiertas o recientes) de un animal rabioso."  
+              email["emailBody"]
             , textAlign: TextAlign.center,
             ),
         ),

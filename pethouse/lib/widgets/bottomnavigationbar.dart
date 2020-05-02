@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pethouse/screens/emaildetails.dart';
 // import 'package:pethouse/screens/settings.dart';
 // import '../screens/settings.dart';
 
@@ -36,13 +37,21 @@ class AppBottomNavigationBar {
            switch(index) {
              case 0:
                Navigator.pushNamed(context, '/home');  
-              // MaterialPageRoute(builder: (_) => Setting()) ;
+             
                break;
+             
+             case 1:
+            
+               Navigator.pushNamed(context, '/messenger');  
+              //  MaterialPageRoute(builder: (_) => EmailDetails()) ;
+               break;
+             
              case 2:
             
                Navigator.pushNamed(context, '/settings');  
-              // MaterialPageRoute(builder: (_) => Setting()) ;
+              
                break;
+             
              default:
              print('option invalid');
            }
