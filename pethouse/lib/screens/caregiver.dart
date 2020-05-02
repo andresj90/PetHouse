@@ -44,9 +44,7 @@ class _CareGiverState extends State<CareGiver> {
 }
 
 Widget portraitVista(context, data) {
-  return new Scaffold(
-    appBar: ApplicationBar.generateAppBar('Profile', true),
-    body: new Stack(
+  return  new Column(
       children: <Widget>[
         Positioned(
             width: 350.0,
@@ -126,8 +124,7 @@ Widget portraitVista(context, data) {
               ],
             ))
       ],
-    ),
-  );
+    );
 }
 // Widgets
 
