@@ -230,9 +230,13 @@ Widget buildDualPanel(List veterinaryList, BuildContext context, double size,
     _CareGiverState caregiver) {
   return Row(
     children: <Widget>[
-      Expanded(child: buildListView(veterinaryList, context, size, caregiver)),
       Expanded(
-          flex: 3,
+        flex: 2,
+        child: 
+        buildListView(veterinaryList, context, size, caregiver
+        )),
+      Expanded(
+          flex: 4,
           child: Container(
               padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
             child: new Stack(

@@ -73,20 +73,25 @@ import '../widgets/appbar.dart';
                       borderRadius: BorderRadius.circular(8.0),
                       child: Image.asset(
                       email["image"],    
-                      height: 150.0,
-                      width: 20.0,
+                      // height: 150.0,
+                      // width: 20.0,
                               ),
                     ) 
                ),
                Expanded(
+                 flex: 1,
                  child:Column(
                    crossAxisAlignment: CrossAxisAlignment.start,
                    children: <Widget>[
                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                         Text(email["name"]), 
-                         Text(email["date"]), 
+                        Expanded(
+                          child: Text(email["name"]),  
+                        ), 
+                        Expanded(
+                          child:  Text(email["date"]),
+                        ) 
                        ],
                      ), 
                      SizedBox(
@@ -192,16 +197,18 @@ Widget buildCardDualPanel(var email, BuildContext context, _MessengerState email
 
 Widget buildDualPanel(List emailList, BuildContext context, double size, _MessengerState messenger) {
    return Row(
+     crossAxisAlignment: CrossAxisAlignment.start,
+     mainAxisAlignment: MainAxisAlignment.start,
      children: <Widget>[
        Expanded(
-         flex: 1,
+         flex: 2,
          child: 
          buildListView(emailList, context, size, messenger)
          ),
        Expanded(
-         flex: 3,
+         flex: 4,
          child: Container(
-           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+           padding: EdgeInsets.symmetric(horizontal: 5, vertical: 0),
            decoration: BoxDecoration(
             
 
@@ -223,7 +230,8 @@ Widget buildNewsLayout(var email) =>Stack(
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage('assets/images/portraitNews1.jpg'),
-          fit: BoxFit.fitWidth, 
+          fit: BoxFit.fill, 
+          
         ),
       ),
     
