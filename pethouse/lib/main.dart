@@ -29,14 +29,10 @@ class _EntryPointState extends State<EntryPoint> {
       '/settings':(context) => Setting(),
       '/home':(context) => HomeScreen(),
       '/caregiver':(context) => CareGiver(),
-      '/profilecaregiver':(context) => ProfileCareGiver(),
-     },
-    );
-  }
-}
+//      '/profilecaregiver':(context) => ProfileCareGiver(),
 
 
-void main() => runApp(MyApp());
+
 
 
 
