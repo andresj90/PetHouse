@@ -4,54 +4,49 @@ import 'package:pethouse/screens/emaildetails.dart';
 import 'package:pethouse/screens/profilecaregiver.dart';
 import 'package:pethouse/screens/veterinary.dart';
 import 'package:pethouse/screens/caregiver.dart';
+import 'package:pethouse/views/providerprofile.dart';
+import 'package:pethouse/widgets/themenotificator.dart';
+import 'package:provider/provider.dart';
 import 'views/homescreen.dart';
 import 'screens/settings.dart';
 
 
-void main() =>  runApp(EntryPoint());
+void main() =>  runApp( ChangeNotifierProvider<DynamicTheme>(  
+       builder: (_) => DynamicTheme(),  
+       child: EntryPoint(),  
+     ), 
+);
 
 class EntryPoint extends StatefulWidget {
-  static void  changeTheme(bool flag) {
-       _EntryPointState.changeTheme(flag);
-   }
+   
   //  static ThemeData changeTheme;
   @override
   _EntryPointState createState() => _EntryPointState();
 }
 
 class _EntryPointState extends State<EntryPoint> {
-  
-  static ThemeData tema = ThemeData.light();
-  static State estado; 
-  
+ 
    _EntryPointState(); 
-
-   static void changeTheme(bool flag) {
-     
-         if (flag) {
-            tema = ThemeData.dark();
-         } else {
-            tema = ThemeData.light();
-         }
-
-    
-   }
+ 
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<DynamicTheme>(context);  
     return MaterialApp(
     title: 'Pet House',
-    theme: tema,
+    theme: themeProvider.getDarkMode() ? ThemeData.dark() : ThemeData.light(),  
+    debugShowCheckedModeBanner: false,
     // Start the app with the "/" named route. In this case, the app starts
     // on the FirstScreen widget.
     initialRoute: '/home',
     routes: {
       // When navigating to the "/" route, build the FirstScreen widget.
       '/veterinary': (context) => Veterinary(),
-      '/settings':(context) => Setting(),
+      // '/settings':(context) => Setting(),
       '/home':(context) => HomeScreen(),
       '/caregiver':(context) => CareGiver(),
       '/messenger':(context) => Messenger(),
+      '/profile':(context) => Profile(),
       // '/profilecaregiver':(context) => ProfileCareGiver(''),
       // '/emaildetail':(context) => EmailDetails(),
     }

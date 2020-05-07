@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:pethouse/screens/veterinary.dart';
 import '../widgets/appbar.dart';
 import '../widgets/bottomnavigationbar.dart';
 
@@ -11,24 +10,31 @@ class ProfileCareGiver extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
-      appBar: ApplicationBar.generateAppBar('Profile Caregiver', true),
+      appBar: ApplicationBar.generateAppBar('Perfil  Cuidador', true),
       body: _layoudDetails(context, data),
-      bottomNavigationBar:  AppBottomNavigationBar.buildBottomNavigationBar(context),
+      bottomNavigationBar:
+          AppBottomNavigationBar.buildBottomNavigationBar(context),
     );
   }
 }
+
 Widget portraitDetail(context, data) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.center,
     mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[
+      Divider(
+        thickness: 4,
+        height: 10,
+      ),
       SizedBox(
         height: 10,
         width: double.infinity,
       ),
       Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           SizedBox(
             width: 20,
@@ -38,50 +44,55 @@ Widget portraitDetail(context, data) {
             'Nombre: ' + data['name'],
             style: TextStyle(
                 fontSize: 20,
-                color: Colors.black,
+                fontStyle: FontStyle.italic,
                 fontWeight: FontWeight.w500),
           ),
         ],
       ),
       Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           SizedBox(width: 20, height: 35),
           Text(
             'Direccion: ' + data['address'],
             style: TextStyle(
                 fontSize: 20,
-                color: Colors.black,
+                fontStyle: FontStyle.italic,
                 fontWeight: FontWeight.w500),
           ),
         ],
       ),
       Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           SizedBox(width: 20, height: 50),
           Expanded(
             child: Text(
               'Descripcion: ' + data['about'],
+              textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: 20,
-                  color: Colors.black,
+                  fontStyle: FontStyle.italic,
                   fontWeight: FontWeight.w500),
             ),
           ),
         ],
       ),
       Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment:  CrossAxisAlignment.center,
         children: <Widget>[
           SizedBox(height: 100),
           Container(
               height: 50.0,
-              width: 125.0,
+              width: 250,
               alignment: Alignment.center,
               child: Material(
                 borderRadius: BorderRadius.circular(20.0),
-                shadowColor: Colors.greenAccent,
-                color: Colors.green,
+                shadowColor: Colors.blueAccent,
+                color: Colors.blue,
                 elevation: 7.0,
                 child: GestureDetector(
                   onTap: () {},
@@ -90,7 +101,8 @@ Widget portraitDetail(context, data) {
                       'Solicitar',
                       style: TextStyle(
                           color: Colors.white,
-                          fontFamily: 'Montserrat', fontSize: 18.0),
+                          fontFamily: 'Montserrat',
+                          fontSize: 22.0),
                     ),
                   ),
                 ),
@@ -118,10 +130,7 @@ Widget landScapeDetail(context, data) {
             ),
             Text(
               'Nombre: ' + data['name'],
-              style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
             ),
           ],
         ),
@@ -130,10 +139,7 @@ Widget landScapeDetail(context, data) {
             SizedBox(width: 20, height: 20),
             Text(
               'Direccion: ' + data['address'],
-              style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
             ),
           ],
         ),
@@ -143,10 +149,7 @@ Widget landScapeDetail(context, data) {
             Expanded(
               child: Text(
                 'Descripcion: ' + data['about'],
-                style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w500),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
               ),
             ),
           ],
@@ -169,7 +172,8 @@ Widget landScapeDetail(context, data) {
                         'Solicitar',
                         style: TextStyle(
                             color: Colors.white,
-                            fontFamily: 'Montserrat', fontSize: 18.0),
+                            fontFamily: 'Montserrat',
+                            fontSize: 18.0),
                       ),
                     ),
                   ),
@@ -182,24 +186,23 @@ Widget landScapeDetail(context, data) {
 }
 
 Widget _picture(context, data) => Container(
-  width: MediaQuery.of(context).size.width,
-  height: MediaQuery.of(context).size.height / 2,
-  decoration: BoxDecoration(
-    image: new DecorationImage(
-        fit: BoxFit.cover, image: AssetImage(data['image'])),
-  ),
-);
+      width: 500,
+      height: 300,
+      margin: EdgeInsets.only(top: 20, bottom: 40),
+      decoration: BoxDecoration(
+          image: new DecorationImage(
+              fit: BoxFit.cover, image: AssetImage(data['image'])),
+          borderRadius: BorderRadius.circular(20)),
+    );
 
 Widget _layoudDetails(context, data) {
-
-    return SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            _picture(context, data),
-            portraitDetail(context, data),
-          ],
-        ));
-
+  return SingleChildScrollView(
+      child: Column(
+    children: <Widget>[
+      _picture(context, data),
+      portraitDetail(context, data),
+    ],
+  ));
 }
 
-
+ 

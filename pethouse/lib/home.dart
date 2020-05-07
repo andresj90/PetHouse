@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'clipper.dart';
 
-
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -27,15 +26,13 @@ class _HomeState extends State<Home> {
     //GO logo widget
     Widget logo() {
       return Padding(
-        padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.15),
+        padding:
+            EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.15),
         child: Container(
           width: MediaQuery.of(context).size.width,
           height: 220,
           child: Stack(
-            children: <Widget>[
-              Image.asset('assets/images/21645_2.png')
-              
-            ],
+            children: <Widget>[Image.asset('assets/images/21645_2.png')],
           ),
         ),
       );
@@ -102,13 +99,6 @@ class _HomeState extends State<Home> {
       );
     }
 
-    //login and register fuctions
-
-    void _loginUser() {
-       
-      
-    }
-
     void _registerUser() {
       _email = _emailController.text;
       _password = _passwordController.text;
@@ -117,8 +107,6 @@ class _HomeState extends State<Home> {
       _passwordController.clear();
       _nameController.clear();
     }
-
-  
 
     void _loginSheet() {
       _scaffoldKey.currentState.showBottomSheet<void>((BuildContext context) {
@@ -252,8 +240,7 @@ class _HomeState extends State<Home> {
                         height: 250,
                         child: Stack(
                           children: <Widget>[
-                          Image.asset('assets/images/21645_2.png')       
-                           
+                            Image.asset('assets/images/21645_2.png')
                           ],
                         ),
                       ),
@@ -363,5 +350,8 @@ class _HomeState extends State<Home> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
         ));
   }
+}
 
+_loginUser () {
+  
 }

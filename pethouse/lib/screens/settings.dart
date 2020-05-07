@@ -23,21 +23,21 @@ class _SettingState extends State<Setting> {
                flag=!flag;
                setState(() {
                  print(flag);
-                 if (flag) {
-                  //  EntryPoint.changeTheme = ThemeData.dark();
-                      // MaterialApp(
-                      //     theme: ThemeData.dark(),
-                      // );
+                //  if (flag) {
+                //   //  EntryPoint.changeTheme = ThemeData.dark();
+                //       // MaterialApp(
+                //       //     theme: ThemeData.dark(),
+                //       // );
                      
-                      EntryPoint.changeTheme(flag); 
-                 } else {
-                    // EntryPoint.changeTheme = ThemeData.light();
-                      //      MaterialApp(
-                      //     theme: ThemeData.light(),
-                      // );
+                //       EntryPoint.changeTheme(flag); 
+                //  } else {
+                //     // EntryPoint.changeTheme = ThemeData.light();
+                //       //      MaterialApp(
+                //       //     theme: ThemeData.light(),
+                //       // );
                  
-                      EntryPoint.changeTheme(flag);
-                 }
+                //       EntryPoint.changeTheme(flag);
+                //  }
                
                });
             }

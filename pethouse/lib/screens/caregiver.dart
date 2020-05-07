@@ -223,96 +223,95 @@ Widget buildDualPanel(List veterinaryList, BuildContext context, double size,
       Expanded(
         flex: 4,
         child: SingleChildScrollView(
-          child: Column(
-
+          child: Column(children: <Widget>[
+            Container(
+              width: MediaQuery.of(context).size.width /2,
+              height: 300,
+              margin: EdgeInsets.only(top: 20, bottom: 40),
+              decoration: BoxDecoration(
+                  image: new DecorationImage(
+                      fit: BoxFit.cover, image: AssetImage(caregiver.image)),
+                  borderRadius: BorderRadius.circular(20)),
+            ),
+            Divider(
+              thickness: 4,
+              height: 10,
+            ),
+           
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[                         
+                Text(
+                  'Nombre: ' + caregiver.name,
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.w500),
+                ),
+              ],
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Center(
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height / 2,
-                    decoration: BoxDecoration(
-                      image: new DecorationImage(
-                          fit: BoxFit.cover, image: AssetImage(caregiver.image)),
-                    ),
-                  )
+                SizedBox(width: 20, height: 35),
+                Text(
+                  'Direccion: ' + caregiver.address,
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.w500),
                 ),
-                SizedBox(
-                  height: 10,
-                  width: 100,
+              ],
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(width: 20, height: 50),
+                Expanded(
+                  child: Text(
+                    'Descripcion: ' + caregiver.about,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontStyle: FontStyle.italic,
+                        fontWeight: FontWeight.w500),
+                  ),
                 ),
-                Row(
-                  children: <Widget>[
-                    SizedBox(
-                      width: 20,
-                      height: 25,
-                    ),
-                    Text(
-                      'Nombre: ' + caregiver.name,
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    SizedBox(width: 20, height: 35),
-                    Expanded(
-                      child: Text(
-                        'Direccion: ' + caregiver.address,
-                        style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    SizedBox(width: 20, height: 50),
-                    Expanded(
-                      child: Text(
-                        'Descripcion: ' + caregiver.about,
-                        style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(height: 100),
-                    Container(
-                        height: 50.0,
-                        width: 125.0,
-                        alignment: Alignment.center,
-                        child: Material(
-                          borderRadius: BorderRadius.circular(20.0),
-                          shadowColor: Colors.greenAccent,
-                          color: Colors.green,
-                          elevation: 7.0,
-                          child: GestureDetector(
-                            onTap: () {},
-                            child: Center(
-                              child: Text(
-                                'Solicitar',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'Montserrat',
-                                    fontSize: 18.0),
-                              ),
-                            ),
+              ],
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(height: 100),
+                Container(
+                    height: 50.0,
+                    width: 250,
+                    alignment: Alignment.center,
+                    child: Material(
+                      borderRadius: BorderRadius.circular(20.0),
+                      shadowColor: Colors.blueAccent,
+                      color: Colors.blue,
+                      elevation: 7.0,
+                      child: GestureDetector(
+                        onTap: () {},
+                        child: Center(
+                          child: Text(
+                            'Solicitar',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'Montserrat',
+                                fontSize: 22.0),
                           ),
-                        )),
-                  ],
-                ),
-              ]),
+                        ),
+                      ),
+                    )),
+              ],
+            ),
+          ]),
         ),
       ),
     ],
