@@ -12,7 +12,7 @@ class DetailVeterinary extends StatelessWidget {
     return Scaffold(
       body: _layoudDetails(context, data),
       appBar: ApplicationBar.generateAppBar('Detalle Veterinaria', true),
-      bottomNavigationBar: AppBottomNavigationBar.buildBottomNavigationBar(context),
+      bottomNavigationBar: AppBottomNavigationBar.buildBottomNavigationBar(context,0),
     );
   }
 

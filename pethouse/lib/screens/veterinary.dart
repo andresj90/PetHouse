@@ -1,7 +1,6 @@
 import 'dart:ffi';
+import 'package:animator/animator.dart';
 import 'package:flutter/material.dart';
-import 'package:pethouse/screens/detailVeterinary.dart';
-import 'package:pethouse/views/veterinaryList.dart';
 import '../widgets/bottomnavigationbar.dart';
 import '../widgets/appbar.dart';
 
@@ -41,66 +40,114 @@ class _VeterinaryState extends State<Veterinary> {
       body: widget,
       // Text(screenSize.size.toString()),
       bottomNavigationBar:
-          AppBottomNavigationBar.buildBottomNavigationBar(context),
+          AppBottomNavigationBar.buildBottomNavigationBar(context, 0),
     );
   }
 }
 
-// Widgets
+// Widgets -Portrait
 
-Widget buildCard(var veterinary, context) {
-  return InkWell(
-    onTap: () => {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (BuildContext context) => DetailVeterinary(veterinary)))
-    },
-    child: Card(
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Expanded(
-              flex: 1,
-              child: Image.asset(
-                veterinary["image"],
-                // fit: BoxFit.cover,
-              )),
-          Expanded(
-              flex: 2,
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(veterinary["name"]),
-                    Text('Address: ${veterinary["address"]}'),
-                    SizedBox(
-                      height: 10.0,
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Icon(Icons.pin_drop),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(veterinary["distance"]),
-                        SizedBox(
-                          width: 15,
-                        ),
-                        Icon(Icons.timer),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(veterinary["distancetime"])
-                      ],
-                    )
-                  ],
-                ),
-              ))
-        ],
+// Widget buildCard(var veterinary, context) {
+//   return InkWell(
+//     onTap: () => {
+//       Navigator.push(
+//           context,
+//           MaterialPageRoute(
+//               builder: (BuildContext context) => DetailVeterinary(veterinary)))
+//     },
+//     child: Card(
+//       child: Row(
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: <Widget>[
+//           Expanded(
+//               flex: 1,
+//               child: Image.asset(
+//                 veterinary["image"],
+//                 // fit: BoxFit.cover,
+//               )),
+//           Expanded(
+//               flex: 2,
+//               child: Padding(
+//                 padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 20),
+//                 child: Column(
+//                   crossAxisAlignment: CrossAxisAlignment.start,
+//                   children: <Widget>[
+//                     Text(veterinary["name"]),
+//                     Text('Address: ${veterinary["address"]}'),
+//                     SizedBox(
+//                       height: 10.0,
+//                     ),
+//                     Row(
+//                       children: <Widget>[
+//                         Icon(Icons.pin_drop),
+//                         SizedBox(
+//                           width: 5,
+//                         ),
+//                         Text(veterinary["distance"]),
+//                         SizedBox(
+//                           width: 15,
+//                         ),
+//                         Icon(Icons.timer),
+//                         SizedBox(
+//                           width: 5,
+//                         ),
+//                         Text(veterinary["distancetime"])
+//                       ],
+//                     )
+//                   ],
+//                 ),
+//               ))
+//         ],
+//       ),
+//     ),
+//   );
+// }
+
+Widget portraitView(context) {
+  return Stack(
+    children: <Widget>[
+      Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/images/background.jpg'),
+                fit: BoxFit.fill)),
+        child: Container(
+            decoration: BoxDecoration(
+                gradient:
+                    LinearGradient(begin: Alignment.bottomCenter, colors: [
+              Colors.black.withOpacity(0.9),
+              Colors.black.withOpacity(0.3),
+            ])),
+            child: Padding(
+              padding: EdgeInsets.all(20.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  Container(
+                    height: 250,
+                    child: ListView.builder(
+                        itemCount: vetList.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          print(vetList[index]['image']);
+                          return makeItem(
+                              image: vetList[index]['image'],
+                              name: vetList[index]['name'],
+                              address: vetList[index]['address'],
+                              distime: vetList[index]['distancetime'],
+                              dis: vetList[index]['distance'],
+                              contexto: context);
+                        }),
+                  ),
+                ],
+              ),
+            )),
       ),
-    ),
+      makePoint(top: 140.0, left: 30.0),
+      makePoint(top: 190.0, left: 190.0),
+      makePoint(top: 219.0, left: 60.0),
+      makePointMe(top: 200.0, left: 80.0),
+    ],
   );
 }
 
@@ -182,11 +229,11 @@ Widget buildCardDualPanel(
 Widget buildListView(List veterinaryList, BuildContext context, double size,
     _VeterinaryState veterinary) {
   if (size <= 600) {
-    return ListView.builder(
-        itemCount: veterinaryList.length,
-        itemBuilder: (BuildContext context, int index) {
-          return buildCard(veterinaryList[index], context);
-        });
+    // return ListView.builder(
+    //     itemCount: veterinaryList.length,
+    //     itemBuilder: (BuildContext context, int index) {
+    return portraitView(context);
+    // });
   } else {
     return ListView.builder(
         itemCount: veterinaryList.length,
@@ -196,7 +243,7 @@ Widget buildListView(List veterinaryList, BuildContext context, double size,
   }
 }
 
-//Build dual panel
+//Build dual panel este si es en tablet
 
 Widget buildDualPanel(List veterinaryList, BuildContext context, double size,
     _VeterinaryState veterinary) {
@@ -213,61 +260,49 @@ Widget buildDualPanel(List veterinaryList, BuildContext context, double size,
             Container(
               width: MediaQuery.of(context).size.width,
               height: 400,
-              margin: EdgeInsets.only(top: 20, bottom: 20, right: 10),
+              margin: EdgeInsets.only(
+                bottom: 20,
+              ),
               decoration: BoxDecoration(
-                  image: new DecorationImage(
-                      fit: BoxFit.cover, image: AssetImage(veterinary.image)),
-                  borderRadius: BorderRadius.circular(20)),
+                image: new DecorationImage(
+                    fit: BoxFit.cover, image: AssetImage(veterinary.image)),
+              ),
             ),
-            Divider(
-              thickness: 4,
-              height: 10,
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
+            Wrap(
               children: <Widget>[
-                SizedBox(
-                  width: 20,
-                  height: 30,
+                SizedBox(width: 20, height: 40),
+                Container(
+                  margin: EdgeInsets.only(right: 20),
+                  child: Text(
+                    'Distancia: ' + veterinary.distance,
+                    style: TextStyle(
+                        fontSize: 25,
+                        color: Colors.lightBlueAccent,
+                        fontStyle: FontStyle.italic,
+                        fontWeight: FontWeight.w900),
+                  ),
                 ),
                 Icon(Icons.store),
-                Text(
-                  'Nombre: ' + veterinary.name,
-                  style: TextStyle(
-                      fontSize: 25,
-                      fontStyle: FontStyle.italic,
-                      fontWeight: FontWeight.w500),
+                Container(
+                  margin: EdgeInsets.only(right: 20),
+                  child: Text(
+                    'Nombre: ' + veterinary.name,
+                    style: TextStyle(
+                        fontSize: 25,
+                        fontStyle: FontStyle.italic,
+                        fontWeight: FontWeight.w500),
+                  ),
                 ),
-              ],
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(width: 20, height: 40),
                 Icon(Icons.pin_drop),
-                Text(
-                  'Direccion: ' + veterinary.address,
-                  style: TextStyle(
-                      fontSize: 25,
-                      fontStyle: FontStyle.italic,
-                      fontWeight: FontWeight.w500),
-                ),
-              ],
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(width: 20, height: 40),
-                Icon(Icons.transfer_within_a_station),
-                Text(
-                  'Distancia: ' + veterinary.distance,
-                  style: TextStyle(
-                      fontSize: 25,
-                      fontStyle: FontStyle.italic,
-                      fontWeight: FontWeight.w500),
+                Container(
+                  margin: EdgeInsets.only(right: 20),
+                  child: Text(
+                    'Direccion: ' + veterinary.address,
+                    style: TextStyle(
+                        fontSize: 25,
+                        fontStyle: FontStyle.italic,
+                        fontWeight: FontWeight.w500),
+                  ),
                 ),
               ],
             ),
@@ -281,6 +316,7 @@ Widget buildDualPanel(List veterinaryList, BuildContext context, double size,
                 ),
                 Text(
                   'Tiempo en llegar: ' + veterinary.distancetime,
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: 25,
                       fontStyle: FontStyle.italic,
@@ -289,8 +325,8 @@ Widget buildDualPanel(List veterinaryList, BuildContext context, double size,
               ],
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 SizedBox(height: 100),
                 Container(
@@ -327,23 +363,211 @@ Widget buildDualPanel(List veterinaryList, BuildContext context, double size,
 List vetList = [
   {
     "image": "assets/images/veterinary1.jpg",
-    "name": "Veterinary 1",
-    "address": "Address 1",
+    "name": "Veterinary ",
+    "address": "Calle 100 # 45",
     "distance": "5 Miles",
     "distancetime": "10 Min"
   },
   {
     "image": "assets/images/veterinary2.jpg",
     "name": "Veterinary 2",
-    "address": "Address 2",
+    "address": "Calle 13 # 85",
     "distance": "8 Miles",
     "distancetime": "15 Min"
   },
   {
     "image": "assets/images/veterinary3.jpg",
     "name": "Veterinary 3",
-    "address": "Address 33",
+    "address": "Calle 130 # 15",
     "distance": "15 Miles",
     "distancetime": "25 Min"
   },
 ];
+
+Widget makePoint({top, left}) {
+  return Positioned(
+    top: top,
+    left: left,
+    child: Container(
+        width: 20,
+        height: 20,
+        decoration: BoxDecoration(
+            shape: BoxShape.circle, color: Colors.blue.withOpacity(0.3)),
+        child: Animator<double>(
+          duration: Duration(seconds: 1),
+          tween: Tween<double>(begin: 4.0, end: 6.0),
+          cycles: 0,
+          builder: (anim) => Center(
+            child: Container(
+              margin: EdgeInsets.all(anim.value),
+              decoration:
+                  BoxDecoration(shape: BoxShape.circle, color: Colors.blue),
+            ),
+          ),
+        )),
+  );
+}
+
+Widget makePointMe({top, left}) {
+  return Positioned(
+    top: top,
+    left: left,
+    child: Container(
+        width: 20,
+        height: 20,
+        decoration: BoxDecoration(
+            shape: BoxShape.circle, color: Colors.red.withOpacity(0.3)),
+        child: Animator<double>(
+          duration: Duration(seconds: 1),
+          tween: Tween<double>(begin: 4.0, end: 6.0),
+          cycles: 0,
+          builder: (anim) => Center(
+            child: Container(
+              margin: EdgeInsets.all(anim.value),
+              decoration:
+                  BoxDecoration(shape: BoxShape.circle, color: Colors.red),
+            ),
+          ),
+        )),
+  );
+}
+
+Widget makeItem({image, dis, name, address, distime, contexto}) {
+  return AspectRatio(
+    aspectRatio: 1.7 / 2,
+    child: GestureDetector(
+      onTap: () {
+        showAlertDialog(contexto, name);
+      },
+      child: Container(
+        margin: EdgeInsets.only(right: 20),
+        padding: EdgeInsets.all(20),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20), color: Colors.white),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Container(
+                  width: 60,
+                  height: 60,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(
+                          image: AssetImage(image), fit: BoxFit.cover)),
+                ),
+                Icon(Icons.directions_bus),
+                Container(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 5.0, vertical: 3.0),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: Colors.grey[200]),
+                    child: Text(
+                      distime.toString(),
+                      style: TextStyle(color: Colors.grey[500]),
+                    )),
+              ],
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: <Widget>[
+                Icon(Icons.navigation),
+                Container(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: Colors.grey[200]),
+                    child: Text(
+                      address.toString(),
+                      style: TextStyle(color: Colors.grey[500]),
+                    )),
+              ],
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Row(
+              children: <Widget>[
+                Icon(Icons.check_box),
+                Container(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: Colors.grey[200]),
+                    child: Text(
+                      'Abierto',
+                      style: TextStyle(color: Colors.grey[500]),
+                    )),
+              ],
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Text(
+              name.toString(),
+              style: TextStyle(
+                  color: Colors.grey[800],
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: Icon(
+                Icons.star_border,
+                color: Colors.yellow[700],
+                size: 30,
+              ),
+            )
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
+showAlertDialog(BuildContext context, name) {
+  // set up the buttons
+  Widget cancelButton = FlatButton(
+    child: Text("Cancelar"),
+    onPressed: () {
+      Navigator.of(context).pop(); // dismiss
+    },
+  );
+  Widget continueButton = FlatButton(
+    child: Text("Reservar"),
+    onPressed: () {
+      Navigator.of(context).pop(); // dismiss
+    },
+  );
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("Confirmar"),
+    content: Text(
+        "Desea reservar un espacio en la Veterinaria: " + name + " para hoy?"),
+    actions: [
+      cancelButton,
+      continueButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}

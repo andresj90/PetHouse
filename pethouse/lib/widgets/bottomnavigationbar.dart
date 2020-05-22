@@ -1,55 +1,50 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:pethouse/screens/emaildetails.dart';
 // import 'package:pethouse/screens/settings.dart';
 // import '../screens/settings.dart';
 
 class AppBottomNavigationBar {
-  State bottomNavState;
-  static Widget buildBottomNavigationBar(BuildContext context) {
-    return BottomNavigationBar(
-      type: BottomNavigationBarType.fixed,
-      //  backgroundColor: Colors.blue,
-      items: <BottomNavigationBarItem>[
-        BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.message), title: Text('Inbox')),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.settings),
-          title: Text('Settings'),
-        ),
-        BottomNavigationBarItem(icon: Icon(Icons.forum), title: Text('Forum')),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.person), title: Text('Profile')),
-      ],
-      onTap: (int index) {
-        switch (index) {
-          case 0:
-            Navigator.pushNamed(context, '/home');
 
-            break;
+  static Widget buildBottomNavigationBar(BuildContext context, int index ) {    
+    return   CurvedNavigationBar(                    
+            // buttonBackgroundColor: Colors.white,                
+            backgroundColor: Colors.white,
+            color: Colors.blue,
+            index: index,            
+            height: 50,
+            items: <Widget>[
+              Icon(Icons.home),
+              Icon(Icons.message),
+              Icon(Icons.settings),
+              Icon(Icons.forum),
+              Icon(Icons.person)
+            ],
+            animationCurve: Curves.bounceInOut,
+            animationDuration: Duration(milliseconds: 250),
+            onTap: (int index) {                
+                switch (index) {
+                case 0:
+                  Navigator.pushNamed(context, '/home');
+                  break;
 
-          case 1:
-            Navigator.pushNamed(context, '/messenger');
-            //  MaterialPageRoute(builder: (_) => EmailDetails()) ;
-            break;
+                case 1:
+                  Navigator.pushNamed(context, '/messenger');                  
+                  break;
 
-          case 2:
-            Navigator.pushNamed(context, '/settings');
+                case 2:
+                  Navigator.pushNamed(context, '/settings');
 
-            break;
-          case 3:
-            Navigator.pushNamed(context, '/settings');
+                  break;
+                case 3:
+                  Navigator.pushNamed(context, '/settings');
 
-            break;
-          case 4:
-            Navigator.pushNamed(context, '/profile');
+                  break;
+                case 4:
+                  Navigator.pushNamed(context, '/profile');
 
-            break;
-
-          default:
-            print('option invalid');
-        }
-      },
-    );
+                  break;             
+                }
+            },      
+          );
   }
 }

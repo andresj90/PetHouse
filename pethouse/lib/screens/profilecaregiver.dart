@@ -14,7 +14,7 @@ class ProfileCareGiver extends StatelessWidget {
       appBar: ApplicationBar.generateAppBar('Perfil  Cuidador', true),
       body: _layoudDetails(context, data),
       bottomNavigationBar:
-          AppBottomNavigationBar.buildBottomNavigationBar(context),
+          AppBottomNavigationBar.buildBottomNavigationBar(context,0),
     );
   }
 }

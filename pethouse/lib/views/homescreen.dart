@@ -1,28 +1,21 @@
 import 'package:flutter/material.dart';
-import '../widgets/appbar.dart';
-import '../widgets/bottomnavigationbar.dart';
+import 'package:pethouse/widgets/bottomnavigationbar.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context);
-    Widget widget;
-
-    // if (screenSize.size.width<= 600) {
-    //    widget = buildListView(emailList, context,screenSize.size.width, this);
-    // } else {
-    //    widget = buildDualPanel(emailList, context,screenSize.size.width, this);
-    // }
-
     return Scaffold(
-      appBar: ApplicationBar.generateAppBar('PetHouse', true),
+     appBar: AppBar(
+        title: Text('PetHouse'),
+        centerTitle: true,
+      ),
       body: Column(
         children: <Widget>[
           Flexible(child: generateCardLists(homePageCards.length, 2, context)),
         ],
       ),
       bottomNavigationBar:
-          AppBottomNavigationBar.buildBottomNavigationBar(context),
+           AppBottomNavigationBar.buildBottomNavigationBar(context,0),         
     );
   }
 }
@@ -90,6 +83,9 @@ class CardCreator {
     switch (this.category) {
       case 'Veterinaría':
         Navigator.pushNamed(context, '/veterinary');
+        break;
+     case 'Guardería':
+        Navigator.pushNamed(context, '/storekeeper');
         break;
       case 'Paseador':
         Navigator.pushNamed(context, '/caregiver');
