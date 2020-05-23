@@ -127,10 +127,26 @@ Widget portraitVista(context, data) {
 Widget buildCard(var veterinary, BuildContext context) {
   return InkWell(
     onTap: () => {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (BuildContext context) => ProfileCareGiver(veterinary)))
+       Navigator.push(
+            context,
+            PageRouteBuilder(
+              transitionDuration: Duration(seconds: 1),
+              transitionsBuilder: (BuildContext context,
+                  Animation<double> animation,
+                  Animation<double> secAnimation,
+                  Widget child) {
+                animation = CurvedAnimation(
+                    parent: animation, curve: Curves.easeInOutBack);
+                return ScaleTransition(
+                    scale: animation,
+                    child: child,
+                    alignment: Alignment.center);
+              },
+              pageBuilder: (BuildContext context, Animation<double> animation,
+                  Animation<double> secAnimation) {
+                return ProfileCareGiver(veterinary);
+              },
+            ))
     },
     child: Card(
       child: Row(

@@ -34,12 +34,17 @@ Widget portraitView(context) {
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height / 2.2,
                 decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(blurRadius: 5.0, color: Colors.black)
+                    ],
                     image: DecorationImage(
                         image: AssetImage('assets/images/accesories.jpg'),
                         fit: BoxFit.fill)),
               ),
             ),
-             
+            SizedBox(
+              height: 15,
+            ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -61,11 +66,11 @@ Widget portraitView(context) {
                   FadeAnimation(
                     2,
                     Container(
-                      height: 220,
+                      height: 250,
                       child: ListView.builder(
                           itemCount: listaccesories.length,
                           scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {                            
+                          itemBuilder: (context, index) {
                             return makeItem(
                                 image: listaccesories[index]['image'],
                                 valoracion: listaccesories[index]['valoracion'],
@@ -103,7 +108,7 @@ Widget portraitView(context) {
                       child: ListView.builder(
                           itemCount: listaccesories.length,
                           scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {                          
+                          itemBuilder: (context, index) {
                             return makeItem(
                                 image: listagato[index]['image'],
                                 valoracion: listagato[index]['valoracion'],
@@ -142,14 +147,13 @@ List listaccesories = [
     "valoracion": "4.0",
     "price": "15.000",
   },
- {
+  {
     "image": "assets/images/guantemasajeador.png",
     "name": "Guante Masajeador",
     "valoracion": "4.2",
     "price": "30.000",
   },
 ];
-
 
 List listagato = [
   {
@@ -176,13 +180,13 @@ List listagato = [
     "valoracion": "4.2",
     "price": "200.000",
   },
-    {
+  {
     "image": "assets/images/gimnasioyrascador.png",
     "name": "Gimnasio y Rascador grande",
     "valoracion": "4.2",
     "price": "250.000",
   },
-    {
+  {
     "image": "assets/images/guantemasajeador.png",
     "name": "Guante Masajeador",
     "valoracion": "4.2",
@@ -199,11 +203,14 @@ Widget makeItem({image, valoracion, name, price, contexto}) {
       },
       child: Container(
         margin: EdgeInsets.only(right: 20),
-        padding: EdgeInsets.all(20),
-        decoration: BoxDecoration(
-            boxShadow: [BoxShadow(blurRadius: 1.0, color: Colors.white)],
-            borderRadius: BorderRadius.circular(20),
-            color: Colors.white12),
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 1,
+            blurRadius: 1, 
+          )
+        ], borderRadius: BorderRadius.circular(20), color: Colors.grey),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -211,8 +218,8 @@ Widget makeItem({image, valoracion, name, price, contexto}) {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
-                  width: 60,
-                  height: 60,
+                  width: 70,
+                  height: 70,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       image: DecorationImage(
@@ -297,8 +304,7 @@ showAlertDialog(BuildContext context, name) {
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
     title: Text("Confirmar"),
-    content: Text(
-        "Esta seguro de comprar este producto : " + name + " ?"),
+    content: Text("Esta seguro de comprar este producto : " + name + " ?"),
     actions: [
       cancelButton,
       continueButton,
