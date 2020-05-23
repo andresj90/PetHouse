@@ -1,21 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:pethouse/Animation/FadeAnimation.dart';
+import 'package:pethouse/screens/accesories.dart';
+import 'package:pethouse/screens/caregiver.dart';
+import 'package:pethouse/screens/storekeeper.dart';
+import 'package:pethouse/screens/veterinary.dart';
 import 'package:pethouse/widgets/bottomnavigationbar.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     appBar: AppBar(
+      appBar: AppBar(
         title: Text('PetHouse'),
         centerTitle: true,
       ),
       body: Column(
         children: <Widget>[
-          Flexible(child: generateCardLists(homePageCards.length, 2, context)),
+          Container(
+              child: Flexible(
+                  child: generateCardLists(homePageCards.length, 2, context))),
         ],
       ),
       bottomNavigationBar:
-           AppBottomNavigationBar.buildBottomNavigationBar(context,0),         
+          AppBottomNavigationBar.buildBottomNavigationBar(context, 0),
     );
   }
 }
@@ -30,13 +38,28 @@ Widget servicesCard(var card, BuildContext context) => Card(
       },
       child: Stack(
         children: <Widget>[
-          Image.asset(card.cardImage()),
+          FadeAnimation(
+            1.5,
+            Container(
+              child: Image.asset(card.cardImage()),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(180.0),
+                ),
+              ),
+            ),
+          ),
           Container(
             padding: EdgeInsets.fromLTRB(5.0, 5.0, 0.0, 0.0),
             // padding: EdgeInsets.all(10 ),
             child: Text(
               card.cardCategory(),
-              style: cardText,
+              style: GoogleFonts.caveat(
+                color: Colors.white,
+                fontWeight: FontWeight.w700,
+                fontSize: 30.0,
+                letterSpacing: 1.0,
+              ),
             ),
           )
         ],
@@ -82,13 +105,93 @@ class CardCreator {
   void navigateRoutes(BuildContext context) {
     switch (this.category) {
       case 'Veterinaría':
-        Navigator.pushNamed(context, '/veterinary');
+        // Navigator.pushNamed(context, '/veterinary');
+        Navigator.push(
+            context,
+            PageRouteBuilder(
+              transitionDuration: Duration(seconds: 1),
+              transitionsBuilder: (BuildContext context,
+                  Animation<double> animation,
+                  Animation<double> secAnimation,
+                  Widget child) {
+                animation = CurvedAnimation(
+                    parent: animation, curve: Curves.easeInOutBack);
+                return ScaleTransition(
+                    scale: animation,
+                    child: child,
+                    alignment: Alignment.center);
+              },
+              pageBuilder: (BuildContext context, Animation<double> animation,
+                  Animation<double> secAnimation) {
+                return Veterinary();
+              },
+            ));
         break;
-     case 'Guardería':
-        Navigator.pushNamed(context, '/storekeeper');
+      case 'Guardería':
+        Navigator.push(
+            context,
+            PageRouteBuilder(
+              transitionDuration: Duration(seconds: 1),
+              transitionsBuilder: (BuildContext context,
+                  Animation<double> animation,
+                  Animation<double> secAnimation,
+                  Widget child) {
+                animation = CurvedAnimation(
+                    parent: animation, curve: Curves.easeInOutBack);
+                return ScaleTransition(
+                    scale: animation,
+                    child: child,
+                    alignment: Alignment.center);
+              },
+              pageBuilder: (BuildContext context, Animation<double> animation,
+                  Animation<double> secAnimation) {
+                return StoreKeeper();
+              },
+            ));
         break;
       case 'Paseador':
-        Navigator.pushNamed(context, '/caregiver');
+        Navigator.push(
+            context,
+            PageRouteBuilder(
+              transitionDuration: Duration(seconds: 1),
+              transitionsBuilder: (BuildContext context,
+                  Animation<double> animation,
+                  Animation<double> secAnimation,
+                  Widget child) {
+                animation = CurvedAnimation(
+                    parent: animation, curve: Curves.easeInOutBack);
+                return ScaleTransition(
+                    scale: animation,
+                    child: child,
+                    alignment: Alignment.center);
+              },
+              pageBuilder: (BuildContext context, Animation<double> animation,
+                  Animation<double> secAnimation) {
+                return CareGiver();
+              },
+            ));
+        break;
+         case 'Accesorios':
+        Navigator.push(
+            context,
+            PageRouteBuilder(
+              transitionDuration: Duration(seconds: 1),
+              transitionsBuilder: (BuildContext context,
+                  Animation<double> animation,
+                  Animation<double> secAnimation,
+                  Widget child) {
+                animation = CurvedAnimation(
+                    parent: animation, curve: Curves.easeInOutBack);
+                return ScaleTransition(
+                    scale: animation,
+                    child: child,
+                    alignment: Alignment.center);
+              },
+              pageBuilder: (BuildContext context, Animation<double> animation,
+                  Animation<double> secAnimation) {
+                return Accessories();
+              },
+            ));
         break;
       default:
     }
@@ -111,6 +214,7 @@ List homePageCards = [
 
 var cardText = TextStyle(
   color: Colors.white,
+
   //  BoxShadow(color: Colors.white,offset: Offset.zero, blurRadius: 0.0,spreadRadius: 0.0),
   fontWeight: FontWeight.w700,
   letterSpacing: 1.0,

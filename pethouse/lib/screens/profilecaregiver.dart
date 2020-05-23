@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:pethouse/Animation/FadeAnimation.dart';
 import '../widgets/appbar.dart';
 import '../widgets/bottomnavigationbar.dart';
 
@@ -199,7 +200,7 @@ Widget _layoudDetails(context, data) {
   return SingleChildScrollView(
       child: Column(
     children: <Widget>[
-      _picture(context, data),
+      FadeAnimation(2, _picture(context, data)),
       portraitDetail(context, data),
     ],
   ));

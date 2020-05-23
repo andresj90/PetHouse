@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:animator/animator.dart';
 import 'package:flutter/material.dart';
+import 'package:pethouse/Animation/FadeAnimation.dart';
 import '../widgets/bottomnavigationbar.dart';
 import '../widgets/appbar.dart';
 
@@ -65,8 +66,8 @@ Widget portraitView(context) {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
-                  Container(
-                    height: 250,
+                  FadeAnimation(2, Container(
+                    height: 280,
                     child: ListView.builder(
                         itemCount: guardlist.length,
                         scrollDirection: Axis.horizontal,
@@ -80,14 +81,17 @@ Widget portraitView(context) {
                               contexto: context
                               );
                         }),
-                  ),
+                  ),),
                 ],
               ),
             )),
       ),
       makePoint(top: 250.0, left: 100.0),
       makePoint(top: 125.0, left: 86.0),
-      makePoint(top: 180.0, left: 60.0),
+      makePoint(top: 180.0, left: 80.0),
+      makePoint(top: 220.0, left: 199.0),
+      makePoint(top: 230.0, left: 150.0),
+      makePoint(top: 300.0, left: 100.0),
       makePointMe(top: 125.0, left: 150.0),
     ],
   );
@@ -300,22 +304,43 @@ Widget buildDualPanel(List guardList, BuildContext context, double size,
 List guardlist = [
   {
     "image": "assets/images/guar1.png",
-    "name": "Guarderia 1 ",
+    "name": "Pet love ",
     "address": "Calle 100 # 45",
     "distance": "5 Miles",
     "distancetime": "10 Min"
   },
   {
     "image": "assets/images/guar2.png",
-    "name": "Guarderia 2",
+    "name": "Pet Family",
     "address": "Calle 13 # 85",
     "distance": "8 Miles",
-    "distancetime": "15 Min"
+    "distancetime": "22 Min"
   },
   {
     "image": "assets/images/guar3.png",
-    "name": "Guarderia  3",
+    "name": "Animal Rescue",
     "address": "Calle 130 # 15",
+    "distance": "30 Miles",
+    "distancetime": "50 Min"
+  },
+   {
+    "image": "assets/images/guar1.png",
+    "name": " Reino Animal ",
+    "address": "Calle 93 # 15",
+    "distance": "4 Miles",
+    "distancetime": "10 Min"
+  },
+   {
+    "image": "assets/images/guar3.png",
+    "name": "Sucursal Canina",
+    "address": "Calle 130 # 15",
+    "distance": "15 Miles",
+    "distancetime": "25 Min"
+  },
+   {
+    "image": "assets/images/guar2.png",
+    "name": "Pijama Doc",
+    "address": "Calle 50 # 15",
     "distance": "15 Miles",
     "distancetime": "25 Min"
   },

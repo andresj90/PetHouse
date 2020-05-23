@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
+import 'package:pethouse/Animation/FadeAnimation.dart';
+
 class Splash extends StatefulWidget {
   @override
   _SplashState createState() => _SplashState();
@@ -14,7 +16,7 @@ class _SplashState extends State<Splash> {
 
   @override
   Widget build(BuildContext context) {
-    Timer(Duration(seconds: 5), () => Navigator.pushNamed(context, '/home'));
+    Timer(Duration(seconds: 6), () => Navigator.pushNamed(context, '/home'));
     return MaterialApp(home: vista(), debugShowCheckedModeBanner: false,);
   }
 }
@@ -25,7 +27,7 @@ Widget vista() {
       fit: StackFit.expand,
       children: <Widget>[
         Container(
-          decoration: BoxDecoration(color: Colors.red),
+          decoration: BoxDecoration(color:  Color(0xff00bfa5)),
         ),
         Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -36,7 +38,7 @@ Widget vista() {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Container(
+                      FadeAnimation(2,Container(
                         width: 200.0,
                         height: 200.0,
                           decoration: BoxDecoration(
@@ -49,12 +51,12 @@ Widget vista() {
                               ),
                               boxShadow: [
                             BoxShadow(blurRadius: 1.0, color: Colors.white)
-                          ])),
+                          ]))),
                       Padding(padding: EdgeInsets.only(top: 10.0)),
                       Text('PetHouse',
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 24.0,
+                              fontSize: 40.0,
                               fontWeight: FontWeight.bold)),
                     ],
                   ),
@@ -71,7 +73,7 @@ Widget vista() {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: 20.0,
+                        fontSize: 25.0,
                         fontWeight: FontWeight.bold))
               ],
             ))

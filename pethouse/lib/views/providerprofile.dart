@@ -20,7 +20,7 @@ class _Profile extends State<Profile> {
     return Scaffold(
       appBar: AppBar(title: Text('Perfil y ajustes')),
       bottomNavigationBar:
-          AppBottomNavigationBar.buildBottomNavigationBar(context,4),
+          AppBottomNavigationBar.buildBottomNavigationBar(context,2),
       body: SettingsList(
         sections: [
           SettingsSection(

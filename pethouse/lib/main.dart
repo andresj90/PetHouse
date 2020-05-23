@@ -5,11 +5,13 @@ import 'package:pethouse/screens/veterinary.dart';
 import 'package:pethouse/screens/caregiver.dart';
 import 'package:pethouse/views/providerprofile.dart';
 import 'package:pethouse/views/splash.dart';
+import 'package:pethouse/widgets/themecolors.dart';
 import 'package:pethouse/widgets/themenotificator.dart';
 import 'package:provider/provider.dart';
 import 'views/homescreen.dart';
-import 'screens/settings.dart';
 import 'screens/userprofile.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 
 void main() =>  runApp( ChangeNotifierProvider<DynamicTheme>(  
@@ -35,7 +37,7 @@ class _EntryPointState extends State<EntryPoint> {
     final themeProvider = Provider.of<DynamicTheme>(context);  
     return MaterialApp(
     title: 'Pet House',
-    theme: themeProvider.getDarkMode() ? ThemeData.dark() : ThemeData.light(),  
+    theme: themeProvider.getDarkMode() ? appThemeData[AppTheme.Dark] : appThemeData[AppTheme.Ligth],      
     debugShowCheckedModeBanner: false,
     // Start the app with the "/" named route. In this case, the app starts
     // on the FirstScreen widget.

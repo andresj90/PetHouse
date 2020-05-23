@@ -80,36 +80,39 @@ import '../widgets/appbar.dart';
                ),
                Expanded(
                  flex: 1,
-                 child:Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: <Widget>[
-                     Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                        Expanded(
-                          child: Text(email["name"]),  
-                        ), 
-                        Expanded(
-                          child:  Text(email["date"]),
-                        ) 
-                       ],
-                     ), 
-                     SizedBox(
-                       height: 10,
-                     ),
-                     Row(
-                       children: <Widget>[
-                        Icon(Icons.message), 
-                        Text(email["subject"])   
-                         
-                       ],
-                     ), 
-                     SizedBox(
-                       height: 10,
-                     ), 
-                     Text(email["emailBody"]) 
+                 child:Container(
+                   margin: EdgeInsets.only(left: 10.0),
+                   child: Column(
+                     crossAxisAlignment: CrossAxisAlignment.start,
+                     children: <Widget>[
+                       Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                          Expanded(
+                            child: Text(email["name"]),  
+                          ), 
+                          Expanded(
+                            child:  Text(email["date"]),
+                          ) 
+                         ],
+                       ), 
+                       SizedBox(
+                         height: 10,
+                       ),
+                       Row(
+                         children: <Widget>[
+                          Icon(Icons.message), 
+                          Text(email["subject"])   
+                           
+                         ],
+                       ), 
+                       SizedBox(
+                         height: 10,
+                       ), 
+                       Text(email["emailBody"]) 
 
-                   ],
+                     ],
+                   ),
                  )
                     
                 )

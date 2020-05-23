@@ -8,8 +8,8 @@ class AppBottomNavigationBar {
   static Widget buildBottomNavigationBar(BuildContext context, int index ) {    
     return   CurvedNavigationBar(                    
             // buttonBackgroundColor: Colors.white,                
-            backgroundColor: Colors.white,
-            color: Colors.blue,
+            backgroundColor: Colors.white,            
+            color:  Color(0xff00bfa5),
             index: index,            
             height: 50,
             items: <Widget>[
@@ -32,16 +32,14 @@ class AppBottomNavigationBar {
                   break;
 
                 case 2:
-                  Navigator.pushNamed(context, '/settings');
+                  Navigator.pushNamed(context, '/profile');
 
                   break;
                 case 3:
                   Navigator.pushNamed(context, '/settings');
-
                   break;
-                case 4:
-                  Navigator.pushNamed(context, '/profile');
-
+                case 4:                
+                    Navigator.pushNamed(context, '/userprofile');
                   break;             
                 }
             },      

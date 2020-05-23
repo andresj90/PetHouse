@@ -1,6 +1,7 @@
 import 'dart:ffi';
 import 'package:animator/animator.dart';
 import 'package:flutter/material.dart';
+import 'package:pethouse/Animation/FadeAnimation.dart';
 import '../widgets/bottomnavigationbar.dart';
 import '../widgets/appbar.dart';
 
@@ -123,8 +124,8 @@ Widget portraitView(context) {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
-                  Container(
-                    height: 250,
+                 FadeAnimation(2, Container(
+                    height: 280,
                     child: ListView.builder(
                         itemCount: vetList.length,
                         scrollDirection: Axis.horizontal,
@@ -138,7 +139,7 @@ Widget portraitView(context) {
                               dis: vetList[index]['distance'],
                               contexto: context);
                         }),
-                  ),
+                  ),)
                 ],
               ),
             )),
@@ -146,6 +147,9 @@ Widget portraitView(context) {
       makePoint(top: 140.0, left: 30.0),
       makePoint(top: 190.0, left: 190.0),
       makePoint(top: 219.0, left: 60.0),
+      makePoint(top: 300.0, left: 100.0),
+      makePoint(top: 186.0, left: 75.0),
+      makePoint(top: 380.0, left: 120.0),
       makePointMe(top: 200.0, left: 80.0),
     ],
   );
@@ -363,22 +367,46 @@ Widget buildDualPanel(List veterinaryList, BuildContext context, double size,
 List vetList = [
   {
     "image": "assets/images/veterinary1.jpg",
-    "name": "Veterinary ",
+    "name": "Veterinary Animals play",
     "address": "Calle 100 # 45",
     "distance": "5 Miles",
     "distancetime": "10 Min"
   },
   {
     "image": "assets/images/veterinary2.jpg",
-    "name": "Veterinary 2",
+    "name": "Veterinary Pet Happy",
     "address": "Calle 13 # 85",
     "distance": "8 Miles",
     "distancetime": "15 Min"
   },
   {
     "image": "assets/images/veterinary3.jpg",
-    "name": "Veterinary 3",
-    "address": "Calle 130 # 15",
+    "name": "Veterinary Pet life",
+    "address": "Calle 92 # 15",
+    "distance": "35 Miles",
+    "distancetime": "25 Min"
+  },
+
+   {
+    "image": "assets/images/veterinary3.jpg",
+    "name": "Veterinary  Pet Family",
+    "address": "Calle 85 # 15",
+    "distance": "15 Miles",
+    "distancetime": "25 Min"
+  },
+
+   {
+    "image": "assets/images/veterinary3.jpg",
+    "name": "Veterinary Pet Love",
+    "address": "Calle 90 # 15",
+    "distance": "15 Miles",
+    "distancetime": "25 Min"
+  },
+
+   {
+    "image": "assets/images/veterinary3.jpg",
+    "name": "Veterinary Dogs & Cats",
+    "address": "Calle 160 # 15",
     "distance": "15 Miles",
     "distancetime": "25 Min"
   },
