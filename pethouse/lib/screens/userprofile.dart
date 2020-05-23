@@ -106,7 +106,7 @@ Widget buildPortraitLayout(User user) {
             Expanded(
                 child: Column(
               children: <Widget>[
-                Text('Pet Friends'),
+                Text('Pet Friends', style: ThemeData.light().textTheme.headline6),
                 SizedBox(
                   height: 5,
                 ),
