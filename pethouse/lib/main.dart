@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:pethouse/screens/Messenger.dart';
-import 'package:pethouse/screens/emaildetails.dart';
-import 'package:pethouse/screens/profilecaregiver.dart';
+import 'package:pethouse/screens/storekeeper.dart';
 import 'package:pethouse/screens/veterinary.dart';
 import 'package:pethouse/screens/caregiver.dart';
 import 'package:pethouse/views/providerprofile.dart';
+import 'package:pethouse/views/splash.dart';
 import 'package:pethouse/widgets/themenotificator.dart';
 import 'package:provider/provider.dart';
 import 'views/homescreen.dart';
 import 'screens/settings.dart';
 import 'screens/userprofile.dart';
 
+
 void main() =>  runApp( ChangeNotifierProvider<DynamicTheme>(  
-       builder: (_) => DynamicTheme(),  
+       create: (_) => DynamicTheme(),  
        child: EntryPoint(),  
      ), 
 );
@@ -38,16 +39,18 @@ class _EntryPointState extends State<EntryPoint> {
     debugShowCheckedModeBanner: false,
     // Start the app with the "/" named route. In this case, the app starts
     // on the FirstScreen widget.
-    initialRoute: '/home',
+    initialRoute: '/splash',
     routes: {
       // When navigating to the "/" route, build the FirstScreen widget.
       '/veterinary': (context) => Veterinary(),
+      '/splash': (context) => Splash(),
       // '/settings':(context) => Setting(),
       '/home':(context) => HomeScreen(),
       '/caregiver':(context) => CareGiver(),
       '/messenger':(context) => Messenger(),
       '/profile':(context) => Profile(),
       '/userprofile': (context) => UserProfile(),
+      '/storekeeper':(context) => StoreKeeper(),
       // '/profilecaregiver':(context) => ProfileCareGiver(''),
       // '/emaildetail':(context) => EmailDetails(),
     }

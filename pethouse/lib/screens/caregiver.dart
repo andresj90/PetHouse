@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pethouse/screens/profilecaregiver.dart';
-import 'package:pethouse/screens/veterinary.dart';
 import '../widgets/bottomnavigationbar.dart';
 import '../widgets/appbar.dart';
 
@@ -37,7 +36,7 @@ class _CareGiverState extends State<CareGiver> {
       appBar: ApplicationBar.generateAppBar('Caregivers', true),
       body: widget,
       bottomNavigationBar:
-          AppBottomNavigationBar.buildBottomNavigationBar(context),
+          AppBottomNavigationBar.buildBottomNavigationBar(context,0),
     );
   }
 }

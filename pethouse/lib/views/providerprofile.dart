@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pethouse/widgets/bottomnavigationbar.dart';
 import 'package:pethouse/widgets/themenotificator.dart';
 import 'package:provider/provider.dart';
 import 'package:settings_ui/settings_ui.dart';
@@ -18,7 +19,8 @@ class _Profile extends State<Profile> {
     final themeProvider = Provider.of<DynamicTheme>(context);  
     return Scaffold(
       appBar: AppBar(title: Text('Perfil y ajustes')),
-
+      bottomNavigationBar:
+          AppBottomNavigationBar.buildBottomNavigationBar(context,4),
       body: SettingsList(
         sections: [
           SettingsSection(

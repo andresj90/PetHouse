@@ -40,7 +40,7 @@ import '../widgets/appbar.dart';
      return Scaffold(
        appBar: ApplicationBar.generateAppBar('Messenger', true),
        body: widget,
-       bottomNavigationBar: AppBottomNavigationBar.buildBottomNavigationBar(context),
+       bottomNavigationBar: AppBottomNavigationBar.buildBottomNavigationBar(context, 1),
      );
    }
  }
