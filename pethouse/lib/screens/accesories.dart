@@ -15,7 +15,7 @@ class _AccessoriesState extends State<Accessories> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ApplicationBar.generateAppBar('Accesorios', true),
-      body: portraitView(context),      
+      body: portraitView(context),
       bottomNavigationBar:
           AppBottomNavigationBar.buildBottomNavigationBar(context, 0),
     );
@@ -25,86 +25,172 @@ class _AccessoriesState extends State<Accessories> {
 Widget portraitView(context) {
   return Stack(
     children: <Widget>[
-      Column(
-        children: <Widget>[
-          FadeAnimation(2, Container(
-            width: MediaQuery.of(context).size.width,
-             height: MediaQuery.of(context).size.height / 2.2,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/images/accesories.jpg'),
-                    fit: BoxFit.fill)),
-          ),),
-          //  Container(
-          //   width: 350,
-          //   height: 200,
-          //    child: ListView.builder(
-          //                 itemCount: listaccesories.length,
-          //                 scrollDirection: Axis.horizontal,
-          //                 itemBuilder: (context, index) {
-          //                   print(listaccesories[index]['image']);
-          //                   return makeItem(
-          //                       image: listaccesories[index]['image'],
-          //                       valoracion: listaccesories[index]['valoracion'],
-          //                       name: listaccesories[index]['name'],        
-          //                       price: listaccesories[index]['price'],        
-          //                       contexto: context);
-          //                 }),),
-           Padding(
-              padding: EdgeInsets.all(20.0),
+      SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            FadeAnimation(
+              2,
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height / 2.2,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/images/accesories.jpg'),
+                        fit: BoxFit.fill)),
+              ),
+            ),
+             
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(width: 10.0, height: 10.0),
+                Text.rich(
+                  TextSpan(text: 'Perros'),
+                  style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w800,
+                      fontFamily: 'Montserrat'),
+                )
+              ],
+            ),
+            Padding(
+              padding: EdgeInsets.all(5.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
-                 FadeAnimation(2, Container(
-                    height: 220,
-                    child: ListView.builder(
-                         itemCount: listaccesories.length,
+                  FadeAnimation(
+                    2,
+                    Container(
+                      height: 220,
+                      child: ListView.builder(
+                          itemCount: listaccesories.length,
                           scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) {
-                          print(listaccesories[index]['image']);
-                          return makeItem(
-                              image: listaccesories[index]['image'],
+                          itemBuilder: (context, index) {                            
+                            return makeItem(
+                                image: listaccesories[index]['image'],
                                 valoracion: listaccesories[index]['valoracion'],
-                                name: listaccesories[index]['name'],        
-                                price: listaccesories[index]['price'],        
+                                name: listaccesories[index]['name'],
+                                price: listaccesories[index]['price'],
                                 contexto: context);
-                        }),
-                  ),)
+                          }),
+                    ),
+                  )
                 ],
               ),
             ),
-        ],        
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(width: 10.0, height: 10.0),
+                Text.rich(
+                  TextSpan(text: 'Gatos'),
+                  style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w800,
+                      fontFamily: 'Montserrat'),
+                )
+              ],
+            ),
+            Padding(
+              padding: EdgeInsets.all(5.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  FadeAnimation(
+                    2,
+                    Container(
+                      height: 250,
+                      child: ListView.builder(
+                          itemCount: listaccesories.length,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {                          
+                            return makeItem(
+                                image: listagato[index]['image'],
+                                valoracion: listagato[index]['valoracion'],
+                                name: listagato[index]['name'],
+                                price: listagato[index]['price'],
+                                contexto: context);
+                          }),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
-         
     ],
   );
 }
 
- 
 List listaccesories = [
   {
     "image": "assets/images/hueso.jpg",
     "name": "Hueso",
-    "valoracion": "4.0",
-    "price": "10.000",    
-  },   
-    {
+    "valoracion": "4.7",
+    "price": "10.000",
+  },
+  {
     "image": "assets/images/collar.jpg",
     "name": "Collar",
-    "valoracion": "4.0",
-    "price": "7.000",    
+    "valoracion": "5.0",
+    "price": "7.000",
   },
-    {
+  {
     "image": "assets/images/pelota.jpg",
     "name": "Pelota",
     "valoracion": "4.0",
-    "price": "15.000",    
+    "price": "15.000",
+  },
+ {
+    "image": "assets/images/guantemasajeador.png",
+    "name": "Guante Masajeador",
+    "valoracion": "4.2",
+    "price": "30.000",
   },
 ];
 
 
+List listagato = [
+  {
+    "image": "assets/images/gimnasio.png",
+    "name": "Gimasio Pequeño",
+    "valoracion": "4.0",
+    "price": "100.000",
+  },
+  {
+    "image": "assets/images/gimnasio2.png",
+    "name": "Gimnasio Grande",
+    "valoracion": "4.9",
+    "price": "190.000",
+  },
+  {
+    "image": "assets/images/rascador.png",
+    "name": "Rascador",
+    "valoracion": "4.2",
+    "price": "25.000",
+  },
+  {
+    "image": "assets/images/gimnasio3.png",
+    "name": "Gimnasio 3 pisos",
+    "valoracion": "4.2",
+    "price": "200.000",
+  },
+    {
+    "image": "assets/images/gimnasioyrascador.png",
+    "name": "Gimnasio y Rascador grande",
+    "valoracion": "4.2",
+    "price": "250.000",
+  },
+    {
+    "image": "assets/images/guantemasajeador.png",
+    "name": "Guante Masajeador",
+    "valoracion": "4.2",
+    "price": "30.000",
+  },
+];
 
-Widget makeItem({image, valoracion, name, price,  contexto}) {
+Widget makeItem({image, valoracion, name, price, contexto}) {
   return AspectRatio(
     aspectRatio: 1.7 / 2,
     child: GestureDetector(
@@ -115,7 +201,9 @@ Widget makeItem({image, valoracion, name, price,  contexto}) {
         margin: EdgeInsets.only(right: 20),
         padding: EdgeInsets.all(20),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20), color: Colors.white12),
+            boxShadow: [BoxShadow(blurRadius: 1.0, color: Colors.white)],
+            borderRadius: BorderRadius.circular(20),
+            color: Colors.white12),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -129,16 +217,16 @@ Widget makeItem({image, valoracion, name, price,  contexto}) {
                       borderRadius: BorderRadius.circular(20),
                       image: DecorationImage(
                           image: AssetImage(image), fit: BoxFit.cover)),
-                ),         
-                Icon(Icons.star),      
+                ),
+                Icon(Icons.star, color: Color(0xfff9b403)),
                 Container(
                     padding:
                         EdgeInsets.symmetric(horizontal: 5.0, vertical: 3.0),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                        ),
+                      borderRadius: BorderRadius.circular(50),
+                    ),
                     child: Text(
-                      valoracion.toString(),                      
+                      valoracion.toString(),
                     )),
               ],
             ),
@@ -154,10 +242,10 @@ Widget makeItem({image, valoracion, name, price,  contexto}) {
                     padding:
                         EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                    child: Text( 
-                      price.toString(),                      
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    child: Text(
+                      price.toString(),
                     )),
               ],
             ),
@@ -168,15 +256,13 @@ Widget makeItem({image, valoracion, name, price,  contexto}) {
               children: <Widget>[
                 Icon(Icons.check_box),
                 Container(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                    ),
-                    child: Text(
-                      'Disponible'
-                      ),
-                    ),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  child: Text('Disponible'),
+                ),
               ],
             ),
             SizedBox(
@@ -184,11 +270,8 @@ Widget makeItem({image, valoracion, name, price,  contexto}) {
             ),
             Text(
               name.toString(),
-              style: TextStyle(             
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             ),
-                        
           ],
         ),
       ),
@@ -205,7 +288,7 @@ showAlertDialog(BuildContext context, name) {
     },
   );
   Widget continueButton = FlatButton(
-    child: Text("Reservar"),
+    child: Text("Comprar"),
     onPressed: () {
       Navigator.of(context).pop(); // dismiss
     },
@@ -215,7 +298,7 @@ showAlertDialog(BuildContext context, name) {
   AlertDialog alert = AlertDialog(
     title: Text("Confirmar"),
     content: Text(
-        "Desea reservar un espacio en la guarderia: " + name + " para hoy?"),
+        "Esta seguro de comprar este producto : " + name + " ?"),
     actions: [
       cancelButton,
       continueButton,
