@@ -48,130 +48,130 @@ class _UserProfileState extends State<UserProfile> {
 //portrait layout
 
 Widget buildPortraitLayout(User user, BuildContext context) {
-  return Column(
-    children: <Widget>[
-      SizedBox(
-        height: 10,
-      ),
-      Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Expanded(
-            flex: 1,
-            child: CircleAvatar(
-              radius: 70,
-              // backgroundColor: Color(0xffFDCF09),
+  return  Column(
+      children: <Widget>[
+        SizedBox(
+          height: 10,
+        ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Expanded(
+              flex: 1,
               child: CircleAvatar(
-                radius: 80,
-                backgroundImage: AssetImage(user.avatar),
+                radius: 70,
+                // backgroundColor: Color(0xffFDCF09),
+                child: CircleAvatar(
+                  radius: 80,
+                  backgroundImage: AssetImage(user.avatar),
+                ),
               ),
             ),
-          ),
-          Expanded(
-              flex: 2,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
+            Expanded(
+                flex: 2,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Text(user.name, style: Theme.of(context).textTheme.bodyText2),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(user.breed, style: Theme.of(context).textTheme.bodyText2),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(user.city, style: Theme.of(context).textTheme.bodyText2),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(user.socialurl, style: Theme.of(context).textTheme.bodyText2),
+                  ],
+                ))
+          ],
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        Divider(
+          height: 1,
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                  child: Column(
                 children: <Widget>[
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Text(user.name, style: Theme.of(context).textTheme.bodyText2),
+                  Text('Pet Friends', style: Theme.of(context).textTheme.headline6),
                   SizedBox(
                     height: 5,
                   ),
-                  Text(user.breed, style: Theme.of(context).textTheme.bodyText2),
+                  Text(user.posts.toString(), style: Theme.of(context).textTheme.bodyText1),
+                ],
+              )),
+              Expanded(
+                  child: Column(
+                children: <Widget>[
+                  Text('Following', style: Theme.of(context).textTheme.headline6),
                   SizedBox(
                     height: 5,
                   ),
-                  Text(user.city, style: Theme.of(context).textTheme.bodyText2),
+                  Text(user.following.toString(), style: Theme.of(context).textTheme.bodyText1),
+                ],
+              )),
+              Expanded(
+                  child: Column(
+                children: <Widget>[
+                  Text('Followers', style: Theme.of(context).textTheme.headline6),
                   SizedBox(
                     height: 5,
                   ),
-                  Text(user.socialurl, style: Theme.of(context).textTheme.bodyText2),
+                  Text(user.followers.toString(), style: Theme.of(context).textTheme.bodyText1),
                 ],
               ))
-        ],
-      ),
-      SizedBox(
-        height: 20,
-      ),
-      Divider(
-        height: 1,
-      ),
-      SizedBox(
-        height: 20,
-      ),
-      Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        child: Row(
-          children: <Widget>[
-            Expanded(
-                child: Column(
-              children: <Widget>[
-                Text('Pet Friends', style: Theme.of(context).textTheme.headline6),
-                SizedBox(
-                  height: 5,
-                ),
-                Text(user.posts.toString(), style: Theme.of(context).textTheme.bodyText1),
-              ],
-            )),
-            Expanded(
-                child: Column(
-              children: <Widget>[
-                Text('Following', style: Theme.of(context).textTheme.headline6),
-                SizedBox(
-                  height: 5,
-                ),
-                Text(user.following.toString(), style: Theme.of(context).textTheme.bodyText1),
-              ],
-            )),
-            Expanded(
-                child: Column(
-              children: <Widget>[
-                Text('Followers', style: Theme.of(context).textTheme.headline6),
-                SizedBox(
-                  height: 5,
-                ),
-                Text(user.followers.toString(), style: Theme.of(context).textTheme.bodyText1),
-              ],
-            ))
-          ],
+            ],
+          ),
         ),
-      ),
-      SizedBox(
-        height: 20,
-      ),
-      Divider(
-        height: 1,
-      ),
-      SizedBox(
-        height: 30,
-      ),
-      Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              flex: 2,
-              child: RaisedButton(child: Text('Follow'), color: Theme.of(context).accentColor, onPressed: () {}, textColor: Colors.white,),
-            ),
-            new IconButton(icon: new Icon(Icons.add_circle), onPressed: null),
-            new IconButton(icon: new Icon(Icons.message), onPressed: null),
-            new IconButton(icon: new Icon(Icons.grade), onPressed: null),
-          ],
+        SizedBox(
+          height: 20,
         ),
-      ),
-      SizedBox(
-        height: 30,
-      ),
+        Divider(
+          height: 1,
+        ),
+        SizedBox(
+          height: 30,
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                flex: 2,
+                child: RaisedButton(child: Text('Follow'), color: Theme.of(context).accentColor, onPressed: () {}, textColor: Colors.white,),
+              ),
+              new IconButton(icon: new Icon(Icons.add_circle), onPressed: null),
+              new IconButton(icon: new Icon(Icons.message), onPressed: null),
+              new IconButton(icon: new Icon(Icons.grade), onPressed: null),
+            ],
+          ),
+        ),
+        SizedBox(
+          height: 30,
+        ),
 
-      Flexible(
-        child: buildPhotoGrid(user),
-      )
-      // Text(user.photos.length.toString())
-    ],
-  );
+        Flexible(
+          child: buildPhotoGrid(user),
+        )
+        // Text(user.photos.length.toString())
+      ],
+    );  
 }
 
 //build dual panel

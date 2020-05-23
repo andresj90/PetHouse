@@ -67,7 +67,7 @@ Widget portraitView(context) {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
                   FadeAnimation(2, Container(
-                    height: 280,
+                    height: 300,
                     child: ListView.builder(
                         itemCount: guardlist.length,
                         scrollDirection: Axis.horizontal,
@@ -305,42 +305,42 @@ List guardlist = [
   {
     "image": "assets/images/guar1.png",
     "name": "Pet love ",
-    "address": "Calle 100 # 45",
+    "address": "Calle 1",
     "distance": "5 Miles",
     "distancetime": "10 Min"
   },
   {
     "image": "assets/images/guar2.png",
     "name": "Pet Family",
-    "address": "Calle 13 # 85",
+    "address": "Calle 23",
     "distance": "8 Miles",
     "distancetime": "22 Min"
   },
   {
     "image": "assets/images/guar3.png",
     "name": "Animal Rescue",
-    "address": "Calle 130 # 15",
+    "address": "Calle 25",
     "distance": "30 Miles",
     "distancetime": "50 Min"
   },
    {
     "image": "assets/images/guar1.png",
     "name": " Reino Animal ",
-    "address": "Calle 93 # 15",
+    "address": "Calle 14",
     "distance": "4 Miles",
     "distancetime": "10 Min"
   },
    {
     "image": "assets/images/guar3.png",
     "name": "Sucursal Canina",
-    "address": "Calle 130 # 15",
+    "address": "Calle 40",
     "distance": "15 Miles",
     "distancetime": "25 Min"
   },
    {
     "image": "assets/images/guar2.png",
     "name": "Pijama Doc",
-    "address": "Calle 50 # 15",
+    "address": "Calle 50",
     "distance": "15 Miles",
     "distancetime": "25 Min"
   },

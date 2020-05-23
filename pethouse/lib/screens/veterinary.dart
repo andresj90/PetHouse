@@ -1,4 +1,3 @@
-import 'dart:ffi';
 import 'package:animator/animator.dart';
 import 'package:flutter/material.dart';
 import 'package:pethouse/Animation/FadeAnimation.dart';
@@ -125,7 +124,7 @@ Widget portraitView(context) {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
                  FadeAnimation(2, Container(
-                    height: 280,
+                    height: 300,
                     child: ListView.builder(
                         itemCount: vetList.length,
                         scrollDirection: Axis.horizontal,
@@ -149,7 +148,7 @@ Widget portraitView(context) {
       makePoint(top: 219.0, left: 60.0),
       makePoint(top: 300.0, left: 100.0),
       makePoint(top: 186.0, left: 75.0),
-      makePoint(top: 380.0, left: 120.0),
+      makePoint(top: 310.0, left: 120.0),
       makePointMe(top: 200.0, left: 80.0),
     ],
   );
@@ -225,7 +224,7 @@ Widget buildCardDualPanel(
         ],
       ),
     ),
-  );
+  );  
 }
 
 //ListView Builder
@@ -368,21 +367,21 @@ List vetList = [
   {
     "image": "assets/images/veterinary1.jpg",
     "name": "Veterinary Animals play",
-    "address": "Calle 100 # 45",
+    "address": "Calle 12",
     "distance": "5 Miles",
     "distancetime": "10 Min"
   },
   {
     "image": "assets/images/veterinary2.jpg",
     "name": "Veterinary Pet Happy",
-    "address": "Calle 13 # 85",
+    "address": "Calle 14",
     "distance": "8 Miles",
     "distancetime": "15 Min"
   },
   {
     "image": "assets/images/veterinary3.jpg",
     "name": "Veterinary Pet life",
-    "address": "Calle 92 # 15",
+    "address": "Calle 15",
     "distance": "35 Miles",
     "distancetime": "25 Min"
   },
@@ -390,7 +389,7 @@ List vetList = [
    {
     "image": "assets/images/veterinary3.jpg",
     "name": "Veterinary  Pet Family",
-    "address": "Calle 85 # 15",
+    "address": "Calle 16",
     "distance": "15 Miles",
     "distancetime": "25 Min"
   },
@@ -398,7 +397,7 @@ List vetList = [
    {
     "image": "assets/images/veterinary3.jpg",
     "name": "Veterinary Pet Love",
-    "address": "Calle 90 # 15",
+    "address": "Calle 18",
     "distance": "15 Miles",
     "distancetime": "25 Min"
   },
@@ -406,7 +405,7 @@ List vetList = [
    {
     "image": "assets/images/veterinary3.jpg",
     "name": "Veterinary Dogs & Cats",
-    "address": "Calle 160 # 15",
+    "address": "Calle 160",
     "distance": "15 Miles",
     "distancetime": "25 Min"
   },

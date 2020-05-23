@@ -21,7 +21,7 @@ final appThemeData = {
  AppTheme.Dark : ThemeData(
    brightness: Brightness.dark,
    primaryColor: Colors.black,
-   textTheme: themeFonts
+   textTheme: themeFontsdark
  ),
  AppTheme.LightGreen: ThemeData(
    brightness: Brightness.light,
@@ -46,6 +46,15 @@ TextTheme themeFonts = TextTheme(
      headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
      headline5: GoogleFonts.notoSans(color: Colors.black, fontSize: 13) ,
      headline6:  GoogleFonts.notoSans(color: Colors.black),
-     bodyText1: GoogleFonts.novaFlat(color: Colors.black, fontSize: 26, fontWeight: FontWeight.w500),
-     bodyText2: GoogleFonts.novaFlat(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w500),
+     bodyText1: GoogleFonts.novaFlat(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w500),
+     bodyText2: GoogleFonts.novaFlat(color: Colors.black, fontSize: 18, fontWeight: FontWeight.w500),
+); 
+
+
+TextTheme themeFontsdark = TextTheme(
+     headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
+     headline5: GoogleFonts.notoSans( fontSize: 13) ,
+     headline6:  GoogleFonts.notoSans(),
+     bodyText1: GoogleFonts.novaFlat( fontSize: 20, fontWeight: FontWeight.w500),
+     bodyText2: GoogleFonts.novaFlat( fontSize: 18, fontWeight: FontWeight.w500),
 ); 
