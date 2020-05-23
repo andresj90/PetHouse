@@ -33,7 +33,6 @@ class AppBottomNavigationBar {
 
                 case 2:
                   Navigator.pushNamed(context, '/profile');
-                  print(index);
 
                   break;
                 case 3:

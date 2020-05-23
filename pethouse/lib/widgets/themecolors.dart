@@ -44,6 +44,8 @@ final appThemeData = {
 
 TextTheme themeFonts = TextTheme(
      headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
-     headline6:  GoogleFonts.notoSans(),
-     bodyText1: GoogleFonts.openSansCondensed(),
+     headline5: GoogleFonts.notoSans(color: Colors.black, fontSize: 13) ,
+     headline6:  GoogleFonts.notoSans(color: Colors.black),
+     bodyText1: GoogleFonts.novaFlat(color: Colors.black, fontSize: 26, fontWeight: FontWeight.w500),
+     bodyText2: GoogleFonts.novaFlat(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w500),
 ); 

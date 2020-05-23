@@ -1,4 +1,7 @@
+
+
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pethouse/widgets/bottomnavigationbar.dart';
 import '../widgets/appbar.dart';
 import '../models/user.dart';
@@ -27,9 +30,9 @@ class _UserProfileState extends State<UserProfile> {
     Widget view;
 
     if (screenSize.size.width <= 600) {
-      view = buildPortraitLayout(widget.user);
+      view = buildPortraitLayout(widget.user, context);
     } else {
-      view = buildLanscapeLayout(widget.user);
+      view = buildLanscapeLayout(widget.user, context);
     }
 
     return Scaffold(
@@ -44,7 +47,7 @@ class _UserProfileState extends State<UserProfile> {
 
 //portrait layout
 
-Widget buildPortraitLayout(User user) {
+Widget buildPortraitLayout(User user, BuildContext context) {
   return Column(
     children: <Widget>[
       SizedBox(
@@ -73,19 +76,19 @@ Widget buildPortraitLayout(User user) {
                   SizedBox(
                     height: 30,
                   ),
-                  Text(user.name),
+                  Text(user.name, style: Theme.of(context).textTheme.bodyText2),
                   SizedBox(
                     height: 5,
                   ),
-                  Text(user.breed),
+                  Text(user.breed, style: Theme.of(context).textTheme.bodyText2),
                   SizedBox(
                     height: 5,
                   ),
-                  Text(user.city),
+                  Text(user.city, style: Theme.of(context).textTheme.bodyText2),
                   SizedBox(
                     height: 5,
                   ),
-                  Text(user.socialurl),
+                  Text(user.socialurl, style: Theme.of(context).textTheme.bodyText2),
                 ],
               ))
         ],
@@ -106,31 +109,31 @@ Widget buildPortraitLayout(User user) {
             Expanded(
                 child: Column(
               children: <Widget>[
-                Text('Pet Friends', style: ThemeData.light().textTheme.headline6),
+                Text('Pet Friends', style: Theme.of(context).textTheme.headline6),
                 SizedBox(
                   height: 5,
                 ),
-                Text(user.posts.toString()),
+                Text(user.posts.toString(), style: Theme.of(context).textTheme.bodyText1),
               ],
             )),
             Expanded(
                 child: Column(
               children: <Widget>[
-                Text('Following'),
+                Text('Following', style: Theme.of(context).textTheme.headline6),
                 SizedBox(
                   height: 5,
                 ),
-                Text(user.following.toString()),
+                Text(user.following.toString(), style: Theme.of(context).textTheme.bodyText1),
               ],
             )),
             Expanded(
                 child: Column(
               children: <Widget>[
-                Text('Followers'),
+                Text('Followers', style: Theme.of(context).textTheme.headline6),
                 SizedBox(
                   height: 5,
                 ),
-                Text(user.followers.toString()),
+                Text(user.followers.toString(), style: Theme.of(context).textTheme.bodyText1),
               ],
             ))
           ],
@@ -151,7 +154,7 @@ Widget buildPortraitLayout(User user) {
           children: <Widget>[
             Expanded(
               flex: 2,
-              child: RaisedButton(child: Text('Follow'), color: Colors.blue, onPressed: null),
+              child: RaisedButton(child: Text('Follow'), color: Theme.of(context).accentColor, onPressed: () {}, textColor: Colors.white,),
             ),
             new IconButton(icon: new Icon(Icons.add_circle), onPressed: null),
             new IconButton(icon: new Icon(Icons.message), onPressed: null),
@@ -173,7 +176,7 @@ Widget buildPortraitLayout(User user) {
 
 //build dual panel
 
-Widget buildLanscapeLayout(User user) {
+Widget buildLanscapeLayout(User user, BuildContext context) {
   return Row(
     children: <Widget>[
       Expanded(

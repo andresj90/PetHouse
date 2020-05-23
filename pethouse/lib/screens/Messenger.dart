@@ -92,7 +92,7 @@ import '../widgets/appbar.dart';
                             child: Text(email["name"]),  
                           ), 
                           Expanded(
-                            child:  Text(email["date"]),
+                            child:  Text(email["date"], style: Theme.of(context).textTheme.headline5),
                           ) 
                          ],
                        ), 
