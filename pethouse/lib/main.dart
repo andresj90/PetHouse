@@ -9,7 +9,7 @@ import 'package:pethouse/widgets/themenotificator.dart';
 import 'package:provider/provider.dart';
 import 'views/homescreen.dart';
 import 'screens/settings.dart';
-
+import 'screens/userprofile.dart';
 
 void main() =>  runApp( ChangeNotifierProvider<DynamicTheme>(  
        builder: (_) => DynamicTheme(),  
@@ -47,6 +47,7 @@ class _EntryPointState extends State<EntryPoint> {
       '/caregiver':(context) => CareGiver(),
       '/messenger':(context) => Messenger(),
       '/profile':(context) => Profile(),
+      '/userprofile': (context) => UserProfile(),
       // '/profilecaregiver':(context) => ProfileCareGiver(''),
       // '/emaildetail':(context) => EmailDetails(),
     }
@@ -54,3 +55,6 @@ class _EntryPointState extends State<EntryPoint> {
   );
 }
 }
+
+
+
